@@ -1,0 +1,148 @@
+2022-08-13 10:17:07.354 +01:00 [ERR] 
+
+Application.Exceptions.ValidationException: One or more validation failures have occurred.
+   at Application.Behaviours.ValidationBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Core\Application\Behaviours\ValidationBehaviour.cs:line 28
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPostProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPreProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at WebApi.Controllers.v1.AccountController.Register(RegisterVoterCommand command) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Presentation\WebApi\Controllers\AccountController.cs:line 57
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at WebApi.Middlewares.ErrorHandlerMiddleware.InvokeAsync(HttpContext httpContext) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Presentation\WebApi\Middlewares\ErrorHandlerMiddleware.cs:line 29
+2022-08-13 10:17:23.306 +01:00 [INF] Registration attempt with email: stephane.adjakotan@gmail.com
+2022-08-13 10:17:24.837 +01:00 [INF] Registration succeeds
+2022-08-13 10:17:24.837 +01:00 [INF] Email Sending attempt with email: stephane.adjakotan@gmail.com
+2022-08-13 10:17:30.049 +01:00 [INF] Email Sending attempt with email: stephane.adjakotan@gmail.com
+2022-08-13 10:21:01.695 +01:00 [INF] Email confirmation attempt with UserId: f8bc4e63-ee90-41e7-88af-dc312f0b9f0c
+2022-08-13 10:21:01.791 +01:00 [INF] Email confirmation succeeds
+2022-08-13 10:21:41.762 +01:00 [INF] Authentication attempt with email: stephane.adjakotan@gmail.com
+2022-08-13 10:21:42.121 +01:00 [ERR] 
+
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
+   at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at Persistence.Repository.TokenRepository.GenerateJWToken(Voter appUser) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Infrastructure\Persistence\Repository\TokenRepository.cs:line 175
+   at Persistence.Repository.AccountRepository.AuthenticateAsync(LoginModel loginModel, String ipAddress) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Infrastructure\Persistence\Repository\AccountRepository.cs:line 48
+   at Application.Features.Account.Commands.Authenticate.AuthenticationRequestCommandHandler.Handle(AuthenticationCommand command, CancellationToken cancellationToken) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Core\Application\Features\Account\Commands\Authenticate\AuthenticationCommand.cs:line 40
+   at Application.Behaviours.ValidationBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Core\Application\Behaviours\ValidationBehaviour.cs:line 30
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPostProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPreProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at WebApi.Controllers.v1.AccountController.Authenticate(AuthenticationCommand command) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Presentation\WebApi\Controllers\AccountController.cs:line 38
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at WebApi.Middlewares.ErrorHandlerMiddleware.InvokeAsync(HttpContext httpContext) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Presentation\WebApi\Middlewares\ErrorHandlerMiddleware.cs:line 29
+2022-08-13 10:24:24.968 +01:00 [INF] Authentication attempt with email: stephane.adjakotan@gmail.com
+2022-08-13 10:24:46.580 +01:00 [ERR] 
+
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
+   at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at Persistence.Repository.TokenRepository.GenerateJWToken(Voter appUser) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Infrastructure\Persistence\Repository\TokenRepository.cs:line 175
+   at Persistence.Repository.AccountRepository.AuthenticateAsync(LoginModel loginModel, String ipAddress) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Infrastructure\Persistence\Repository\AccountRepository.cs:line 48
+   at Application.Features.Account.Commands.Authenticate.AuthenticationRequestCommandHandler.Handle(AuthenticationCommand command, CancellationToken cancellationToken) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Core\Application\Features\Account\Commands\Authenticate\AuthenticationCommand.cs:line 40
+   at Application.Behaviours.ValidationBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Core\Application\Behaviours\ValidationBehaviour.cs:line 30
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPostProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPreProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at WebApi.Controllers.v1.AccountController.Authenticate(AuthenticationCommand command) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Presentation\WebApi\Controllers\AccountController.cs:line 38
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at WebApi.Middlewares.ErrorHandlerMiddleware.InvokeAsync(HttpContext httpContext) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Presentation\WebApi\Middlewares\ErrorHandlerMiddleware.cs:line 29
+2022-08-13 10:25:20.415 +01:00 [INF] Authentication attempt with email: stephane.adjakotan@gmail.com
+2022-08-13 10:25:31.576 +01:00 [ERR] 
+
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
+   at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at Persistence.Repository.TokenRepository.GenerateJWToken(Voter appUser) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Infrastructure\Persistence\Repository\TokenRepository.cs:line 175
+   at Persistence.Repository.AccountRepository.AuthenticateAsync(LoginModel loginModel, String ipAddress) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Infrastructure\Persistence\Repository\AccountRepository.cs:line 48
+   at Application.Features.Account.Commands.Authenticate.AuthenticationRequestCommandHandler.Handle(AuthenticationCommand command, CancellationToken cancellationToken) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Core\Application\Features\Account\Commands\Authenticate\AuthenticationCommand.cs:line 40
+   at Application.Behaviours.ValidationBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Core\Application\Behaviours\ValidationBehaviour.cs:line 30
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPostProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPreProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at WebApi.Controllers.v1.AccountController.Authenticate(AuthenticationCommand command) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Presentation\WebApi\Controllers\AccountController.cs:line 38
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at WebApi.Middlewares.ErrorHandlerMiddleware.InvokeAsync(HttpContext httpContext) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Presentation\WebApi\Middlewares\ErrorHandlerMiddleware.cs:line 29
+2022-08-13 10:26:53.906 +01:00 [INF] Authentication attempt with email: stephane.adjakotan@gmail.com
+2022-08-13 10:26:59.917 +01:00 [INF] Authentication succeeds
+2022-08-13 10:27:00.133 +01:00 [INF] RefreshToken succeeds
+2022-08-13 10:34:42.212 +01:00 [INF] Authentication attempt with email: stephane.adjakotan@gmail.com
+2022-08-13 10:34:57.194 +01:00 [INF] Authentication succeeds
+2022-08-13 10:34:57.380 +01:00 [INF] RefreshToken succeeds
+2022-08-13 14:21:47.572 +01:00 [ERR] 
+
+Application.Exceptions.ValidationException: One or more validation failures have occurred.
+   at Application.Behaviours.ValidationBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Core\Application\Behaviours\ValidationBehaviour.cs:line 28
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPostProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPreProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at WebApi.Controllers.v1.AccountController.Register(RegisterVoterCommand command) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Presentation\WebApi\Controllers\AccountController.cs:line 57
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at WebApi.Middlewares.ErrorHandlerMiddleware.InvokeAsync(HttpContext httpContext) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Presentation\WebApi\Middlewares\ErrorHandlerMiddleware.cs:line 29
+2022-08-13 14:24:56.605 +01:00 [INF] Registration attempt with email: stephane.adjakotan@gmail.com
+2022-08-13 14:24:57.941 +01:00 [INF] Registration succeeds
+2022-08-13 14:24:57.941 +01:00 [INF] Email Sending attempt with email: stephane.adjakotan@gmail.com
+2022-08-13 14:25:02.701 +01:00 [INF] Email Sending attempt with email: stephane.adjakotan@gmail.com
+2022-08-13 14:26:51.203 +01:00 [INF] Email confirmation attempt with UserId: d1439e52-4f0e-4995-856f-c45f2add5d72
+2022-08-13 14:26:52.620 +01:00 [INF] Email confirmation succeeds
+2022-08-13 14:27:16.236 +01:00 [INF] Authentication attempt with email: stephane.adjakotan@gmail.com
+2022-08-13 14:27:16.498 +01:00 [INF] Authentication succeeds
+2022-08-13 14:27:16.570 +01:00 [INF] RefreshToken succeeds
