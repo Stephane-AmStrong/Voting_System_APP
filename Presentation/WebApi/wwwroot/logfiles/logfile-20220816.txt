@@ -1,0 +1,23 @@
+2022-08-16 17:27:09.590 +01:00 [INF] Authentication attempt with email: stephane.adjakotan@gmail.com
+2022-08-16 17:27:11.316 +01:00 [INF] Authentication succeeds
+2022-08-16 17:27:11.629 +01:00 [INF] RefreshToken succeeds
+2022-08-16 17:34:29.306 +01:00 [INF] Starting Seeding Default Categories
+2022-08-16 17:34:29.477 +01:00 [FTL] Host terminated unexpectedly
+System.InvalidOperationException: No service for type 'Persistence.Repository.RepositoryWrapper' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Persistence.Seeds.DefaultCategories.SeedDefaultCategoriesAsync(WebApplication webApp) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Infrastructure\Persistence\Seeds\DefaultCategories.cs:line 18
+   at Program.<Main>$(String[] args) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Presentation\WebApi\Program.cs:line 62
+2022-08-16 17:40:23.924 +01:00 [INF] Starting Seeding Default Categories
+2022-08-16 17:40:27.480 +01:00 [INF] Categories Seeding Complete
+2022-08-16 17:40:55.925 +01:00 [INF] Returned Paged List of Categories from database.
+2022-08-16 17:42:22.106 +01:00 [INF] Starting Seeding Default Categories
+2022-08-16 17:43:28.639 +01:00 [INF] Starting Seeding Default Categories
+2022-08-16 17:43:32.180 +01:00 [INF] Categories Seeding Complete
+2022-08-16 17:43:56.378 +01:00 [INF] Returned Paged List of Categories from database.
+2022-08-16 17:48:14.128 +01:00 [INF] Starting Seeding Default Categories
+2022-08-16 17:48:17.810 +01:00 [INF] Categories Seeding Complete
+2022-08-16 17:48:35.631 +01:00 [INF] Authentication attempt with email: stephane.adjakotan@gmail.com
+2022-08-16 17:48:36.282 +01:00 [INF] Authentication succeeds
+2022-08-16 17:48:36.650 +01:00 [INF] RefreshToken succeeds
+2022-08-16 17:49:35.195 +01:00 [INF] Returned Paged List of Categories from database.

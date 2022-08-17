@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Account.Commands.RegisterUser
+namespace Application.Features.Account.Commands.RegisterVoter
 {
     public  class RegisterVoterCommandValidator : AbstractValidator<RegisterVoterCommand>
     {

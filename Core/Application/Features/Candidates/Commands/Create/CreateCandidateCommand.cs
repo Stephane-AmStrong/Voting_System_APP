@@ -14,7 +14,7 @@ namespace Application.Features.Candidates.Commands.Create
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public Guid CategoryId { get; set; }
+        //public Guid CategoryId { get; set; }
     }
 
     internal class CreateCandidateCommandHandler : IRequestHandler<CreateCandidateCommand, CandidateViewModel>

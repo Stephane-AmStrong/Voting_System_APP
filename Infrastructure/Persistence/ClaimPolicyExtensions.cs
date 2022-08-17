@@ -10,7 +10,7 @@ namespace Persistence
 {
     public static class ClaimPolicyExtensions
     {
-        /*
+
         public static void ConfigureClaimPolicy(this IServiceCollection services)
         {
             services.AddAuthorization(option =>
@@ -25,6 +25,6 @@ namespace Persistence
                 }
             });
         }
-        */
+
     }
 }

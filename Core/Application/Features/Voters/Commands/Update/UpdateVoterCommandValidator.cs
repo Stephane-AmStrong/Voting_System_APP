@@ -82,7 +82,7 @@ namespace Application.Features.Voters.Commands.Update
         private async Task<bool> IsUnique(UpdateVoterCommand voterCommand, CancellationToken cancellationToken)
         {
             var voter = _mapper.Map<Voter>(voterCommand);
-            return await _repository.Voter.ExistAsync(voter);
+            return !await _repository.Voter.ExistAsync(voter);
         }
     }
 }

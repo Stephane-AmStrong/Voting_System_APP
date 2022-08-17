@@ -6,28 +6,28 @@
     <members>
         <member name="M:WebApi.Controllers.v1.AccountController.Authenticate(Application.Features.Account.Commands.Authenticate.AuthenticationCommand)">
             <summary>
-            Authenticate a User.
+            Authenticate a Voter.
             </summary>
             <param name="command"></param>
-            <returns>An authenticated user token</returns>
-            <response code="200">The authenticated User</response>
+            <returns>An authenticated voter token</returns>
+            <response code="200">The authenticated Voter</response>
             <response code="400">If the command is null</response>            
         </member>
         <member name="M:WebApi.Controllers.v1.AccountController.Register(Application.Features.Account.Commands.RegisterVoter.RegisterVoterCommand)">
             <summary>
-            Creates a User Account.
+            Creates a Voter Account.
             </summary>
             <param name="command"></param>
-            <returns>A newly created User Account</returns>
-            <response code="200">Returns the newly User Account</response>
+            <returns>A newly created Voter Account</returns>
+            <response code="200">Returns the newly Voter Account</response>
             <response code="400">If the command is null</response>           
         </member>
         <member name="M:WebApi.Controllers.v1.AccountController.ConfirmEmailAsync(Application.Features.Account.Queries.ConfirmEmail.ConfirmEmailQuery)">
             <summary>
-            Confirm user's email.
+            Confirm voter's email.
             </summary>
             <param name="command"></param>
-            <returns>Confirm a newly created User Account's email</returns>
+            <returns>Confirm a newly created Voter Account's email</returns>
             <response code="200">Returns confirmation success message</response>
             <response code="400">If the command is not valide</response>           
         </member>
@@ -42,10 +42,10 @@
         </member>
         <member name="M:WebApi.Controllers.v1.AccountController.ResetPasswordAsync(Application.Features.Account.Commands.ResetPassword.ResetPasswordCommand)">
             <summary>
-            Reset user's Password.
+            Reset voter's Password.
             </summary>
             <param name="command"></param>
-            <returns>Assigns a new password to the user's account</returns>
+            <returns>Assigns a new password to the voter's account</returns>
             <response code="200">Returns New password assignment success message</response>
             <response code="400">If the command is not valide</response>           
         </member>
@@ -89,6 +89,15 @@
             <response code="201">Returns the newly created command</response>
             <response code="400">If the command is null</response>            
         </member>
+        <member name="M:WebApi.Controllers.v1.CandidatesController.AddToCategory(Application.Features.Candidates.Commands.AddToCategory.AddCandidateToCategoryCommand)">
+            <summary>
+            Add Candidate to Category.
+            </summary>
+            <param name="command"></param>
+            <returns>An update of the Candidate</returns>
+            <response code="201">Returns the newly created command</response>
+            <response code="400">If the command is null</response>            
+        </member>
         <member name="M:WebApi.Controllers.v1.CandidatesController.Put(System.Guid,Application.Features.Candidates.Commands.Update.UpdateCandidateCommand)">
             <summary>
             Update a specific Candidate.
@@ -127,6 +136,52 @@
             <response code="201">Returns the newly created command</response>
             <response code="400">If the command is null</response>            
         </member>
+        <member name="M:WebApi.Controllers.v1.VotersController.Get(Application.Features.Voters.Queries.GetPagedList.GetVotersQuery)">
+            <summary>
+            return voters that matche the criteria
+            </summary>
+            <param name="votersQuery"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.v1.VotersController.Get(System.String)">
+            <summary>
+            Retreives a specific Voter.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.v1.VotersController.Post(Application.Features.Voters.Commands.Create.CreateVoterCommand)">
+            <summary>
+            Creates a Voter.
+            </summary>
+            <param name="command"></param>
+            <returns>A newly created Voter</returns>
+            <response code="201">Returns the newly created command</response>
+            <response code="400">If the command is null</response>            
+        </member>
+        <member name="M:WebApi.Controllers.v1.VotersController.Put(System.String,Application.Features.Voters.Commands.Update.UpdateVoterCommand)">
+            <summary>
+            Update a specific Voter.
+            </summary>
+            <param name="id"></param>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.v1.VotersController.ChangeAge(System.String,Application.Features.Voters.Commands.ChangeAge.ChangeAgeVoterCommand)">
+            <summary>
+            Change the birthday of a specific Voter.
+            </summary>
+            <param name="id"></param>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.v1.VotersController.Delete(System.String)">
+            <summary>
+            Deletes a specific Voter.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:WebApi.Controllers.v1.VotesController.Get(Application.Features.Votes.Queries.GetPagedList.GetVotesQuery)">
             <summary>
             return votes that matche the criteria
@@ -139,6 +194,13 @@
             Retreives a specific Vote.
             </summary>
             <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.v1.VotesController.GetNumberOfVotesForACandidate(System.Guid)">
+            <summary>
+            Retreives the Number of votes for candidate with the specified.
+            </summary>
+            <param name="CandidateId"></param>
             <returns></returns>
         </member>
         <member name="M:WebApi.Controllers.v1.VotesController.Post(Application.Features.Votes.Commands.Create.CreateVoteCommand)">

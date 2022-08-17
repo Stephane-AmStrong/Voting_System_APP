@@ -131,7 +131,7 @@ namespace Persistence.Repository
             {
                 if (_voter == null)
                 {
-                    _voter = new VoterRepository(_appDbContext, _voterSortHelper);
+                    _voter = new VoterRepository(_appDbContext, _userManager, _voterSortHelper);
                 }
                 return _voter;
             }

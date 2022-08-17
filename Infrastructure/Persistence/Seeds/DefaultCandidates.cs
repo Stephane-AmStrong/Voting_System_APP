@@ -5,6 +5,7 @@ using Domain.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using Persistence.Contexts;
 using Persistence.Repository;
 
 namespace Persistence.Seeds
@@ -15,8 +16,7 @@ namespace Persistence.Seeds
         {
             using (var scope = webApp.Services.CreateScope())
             {
-                var categoryRepository = scope.ServiceProvider.GetRequiredService<CategoryRepository>();
-                var candidateRepository = scope.ServiceProvider.GetRequiredService<CandidateRepository>();
+                var repository = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
 
                 var presidentsCandidatesToSeed = new string[,]
@@ -38,12 +38,12 @@ namespace Persistence.Seeds
                 };
 
 
-                foreach (var category in await candidateRepository.GetPagedListAsync(new GetCandidatesQuery { SearchTerm = "President" }))
+                foreach (var category in repository.Categories.Where(x=> x.Name == "President").ToList())
                 {
 
-                    for (int i = 0; i < presidentsCandidatesToSeed.Length; i++)
+                    for (int i = 0; i < presidentsCandidatesToSeed.GetLength(0); i++)
                     {
-                        var candidateMichael = new Candidate
+                        var candidate = new Candidate
                         {
                             Id = Guid.NewGuid(),
                             CreatedBy = null,
@@ -55,63 +55,55 @@ namespace Persistence.Seeds
                             CategoryId = category.Id,
                         };
 
-
-                        if (!await candidateRepository.ExistAsync(candidateMichael))
-                        {
-                            await candidateRepository.CreateAsync(candidateMichael);
-                        }
+                        if (!repository.Candidates.Any(x=> x.FirstName == candidate.FirstName && x.LastName == candidate.LastName)) repository.Candidates.Add(candidate);
                     }
                 }
 
-                foreach (var category in await candidateRepository.GetPagedListAsync(new GetCandidatesQuery { SearchTerm = "Vice President" }))
+                foreach (var category in repository.Categories.Where(x => x.Name == "Vice President").ToList())
                 {
 
-                    for (int i = 0; i < vicePresidentCandidatesToSeed.Length; i++)
+                    for (int i = 0; i < vicePresidentCandidatesToSeed.GetLength(0); i++)
                     {
-                        var candidateMichael = new Candidate
+                        var candidate = new Candidate
                         {
                             Id = Guid.NewGuid(),
                             CreatedBy = null,
                             CreatedAt = DateTime.Now,
                             UpdatedAt = null,
                             UpdatedBy = null,
-                            FirstName = presidentsCandidatesToSeed[i, 0],
-                            LastName = presidentsCandidatesToSeed[i, 1],
+                            FirstName = vicePresidentCandidatesToSeed[i, 0],
+                            LastName = vicePresidentCandidatesToSeed[i, 1],
                             CategoryId = category.Id,
                         };
 
 
-                        if (!await candidateRepository.ExistAsync(candidateMichael))
-                        {
-                            await candidateRepository.CreateAsync(candidateMichael);
-                        }
+                        if (!repository.Candidates.Any(x => x.FirstName == candidate.FirstName && x.LastName == candidate.LastName)) repository.Candidates.Add(candidate);
                     }
                 }
 
-                foreach (var category in await candidateRepository.GetPagedListAsync(new GetCandidatesQuery { SearchTerm = "Secretary" }))
+                foreach (var category in repository.Categories.Where(x => x.Name == "Secretary").ToList())
                 {
 
-                    for (int i = 0; i < secretaryCandidatesToSeed.Length; i++)
+                    for (int i = 0; i < secretaryCandidatesToSeed.GetLength(0); i++)
                     {
-                        var candidateMichael = new Candidate
+                        var candidate = new Candidate
                         {
                             Id = Guid.NewGuid(),
                             CreatedBy = null,
                             CreatedAt = DateTime.Now,
                             UpdatedAt = null,
                             UpdatedBy = null,
-                            FirstName = presidentsCandidatesToSeed[i, 0],
-                            LastName = presidentsCandidatesToSeed[i, 1],
+                            FirstName = secretaryCandidatesToSeed[i, 0],
+                            LastName = secretaryCandidatesToSeed[i, 1],
                             CategoryId = category.Id,
                         };
 
 
-                        if (!await candidateRepository.ExistAsync(candidateMichael))
-                        {
-                            await candidateRepository.CreateAsync(candidateMichael);
-                        }
+                        if (!repository.Candidates.Any(x => x.FirstName == candidate.FirstName && x.LastName == candidate.LastName)) repository.Candidates.Add(candidate);
                     }
                 }
+
+                await repository.SaveChangesAsync();
 
             }
 

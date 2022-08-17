@@ -43,6 +43,7 @@ namespace Persistence.Contexts
                         entry.Entity.CreatedAt = _dateTime.NowUtc;
                         entry.Entity.CreatedBy = _authenticatedUser.UserId;
                         break;
+
                     case EntityState.Modified:
                         entry.Entity.UpdatedAt = _dateTime.NowUtc;
                         entry.Entity.UpdatedBy = _authenticatedUser.UserId;

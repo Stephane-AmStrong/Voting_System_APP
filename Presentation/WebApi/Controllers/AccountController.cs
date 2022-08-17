@@ -1,7 +1,6 @@
 ﻿using Application.Features.Account.Commands.Authenticate;
 using Application.Features.Account.Commands.ForgotPassword;
 using Application.Features.Account.Commands.RefreshAccessToken;
-using Application.Features.Account.Commands.RegisterUser;
 using Application.Features.Account.Commands.RegisterVoter;
 using Application.Features.Account.Commands.ResetPassword;
 using Application.Features.Account.Commands.RevokeAccessToken;
@@ -23,11 +22,11 @@ namespace WebApi.Controllers.v1
 
         // POST api/<controller>
         /// <summary>
-        /// Authenticate a User.
+        /// Authenticate a Voter.
         /// </summary>
         /// <param name="command"></param>
-        /// <returns>An authenticated user token</returns>
-        /// <response code="200">The authenticated User</response>
+        /// <returns>An authenticated voter token</returns>
+        /// <response code="200">The authenticated Voter</response>
         /// <response code="400">If the command is null</response>            
         [AllowAnonymous, HttpPost("authenticate")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -42,11 +41,11 @@ namespace WebApi.Controllers.v1
 
         // POST api/<controller>
         /// <summary>
-        /// Creates a User Account.
+        /// Creates a Voter Account.
         /// </summary>
         /// <param name="command"></param>
-        /// <returns>A newly created User Account</returns>
-        /// <response code="200">Returns the newly User Account</response>
+        /// <returns>A newly created Voter Account</returns>
+        /// <response code="200">Returns the newly Voter Account</response>
         /// <response code="400">If the command is null</response>           
         [AllowAnonymous, HttpPost("register")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -61,10 +60,10 @@ namespace WebApi.Controllers.v1
 
         // POST api/<controller>
         /// <summary>
-        /// Confirm user's email.
+        /// Confirm voter's email.
         /// </summary>
         /// <param name="command"></param>
-        /// <returns>Confirm a newly created User Account's email</returns>
+        /// <returns>Confirm a newly created Voter Account's email</returns>
         /// <response code="200">Returns confirmation success message</response>
         /// <response code="400">If the command is not valide</response>           
         [AllowAnonymous, HttpGet("confirm-email")]
@@ -99,10 +98,10 @@ namespace WebApi.Controllers.v1
 
         // POST api/<controller>
         /// <summary>
-        /// Reset user's Password.
+        /// Reset voter's Password.
         /// </summary>
         /// <param name="command"></param>
-        /// <returns>Assigns a new password to the user's account</returns>
+        /// <returns>Assigns a new password to the voter's account</returns>
         /// <response code="200">Returns New password assignment success message</response>
         /// <response code="400">If the command is not valide</response>           
         [AllowAnonymous, HttpPost("reset-password")]
@@ -148,7 +147,6 @@ namespace WebApi.Controllers.v1
             { 
                 UserId = User.FindFirstValue(ClaimTypes.NameIdentifier) 
             };
-            //command.userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             await Mediator.Send(command);
             return NoContent();
         }

@@ -50,7 +50,7 @@ namespace Application.Features.Candidates.Commands.Update
         private async Task<bool> IsUnique(UpdateCandidateCommand candidateCommand, CancellationToken cancellationToken)
         {
             var candidate = _mapper.Map<Candidate>(candidateCommand);
-            return await _repository.Candidate.ExistAsync(candidate);
+            return !await _repository.Candidate.ExistAsync(candidate);
         }
     }
 }

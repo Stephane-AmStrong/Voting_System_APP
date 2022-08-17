@@ -12,11 +12,11 @@ namespace Application.Interfaces
         Task<PagedList<Vote>> GetPagedListAsync(GetVotesQuery getVotesQuery);
 
         Task<Vote> GetByIdAsync(Guid id);
+        Task<int> GetNumberOfVoteOfCandidateByIdAsync(Guid candidateId);
         Task<bool> ExistAsync(Vote vote);
 
         Task CreateAsync(Vote vote);
         Task UpdateAsync(Vote vote);
-        Task UpdateAsync(IEnumerable<Vote> events);
         Task DeleteAsync(Vote vote);
     }
 }

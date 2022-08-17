@@ -24,6 +24,7 @@ namespace WebApi.Controllers.v1
         /// <param name="categoriesQuery"></param>
         /// <returns></returns>
         [HttpGet]
+        [Authorize(Policy = "category.read.policy")]
         public async Task<IActionResult> Get([FromQuery] GetCategoriesQuery categoriesQuery)
         {
             var categories = await Mediator.Send(categoriesQuery);
@@ -38,6 +39,7 @@ namespace WebApi.Controllers.v1
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
+        [Authorize(Policy = "category.read.policy")]
         public async Task<IActionResult> Get(Guid id)
         {
             return Ok(await Mediator.Send(new GetCategoryByIdQuery { Id = id }));
@@ -52,6 +54,7 @@ namespace WebApi.Controllers.v1
         /// <response code="201">Returns the newly created command</response>
         /// <response code="400">If the command is null</response>            
         [HttpPost]
+        [Authorize(Policy = "category.manage.policy")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Post(CreateCategoryCommand command)

@@ -14,7 +14,7 @@ namespace Application.Features.Candidates.Queries.GetPagedList
     {
         public GetCandidatesQuery()
         {
-            OrderBy = "name";
+            OrderBy = "lastname";
         }
 
         public string WithTheName { get; set; }

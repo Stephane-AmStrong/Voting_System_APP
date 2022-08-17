@@ -29,7 +29,7 @@ namespace Application.Features.Categories.Commands.Create
         private async Task<bool> IsUnique(CreateCategoryCommand categoryCommand, CancellationToken cancellationToken)
         {
             var category = _mapper.Map<Category>(categoryCommand);
-            return !(await _repository.Category.ExistAsync(category));
+            return !await _repository.Category.ExistAsync(category);
         }
     }
 }

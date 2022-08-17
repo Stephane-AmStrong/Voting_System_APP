@@ -172,6 +172,15 @@ namespace Persistence.Repository
         public async Task<JwtSecurityToken> GenerateJWToken(Voter appUser)
         {
             var userClaims = await _userManager.GetClaimsAsync(appUser);
+            
+            //if verifier si l'utilisateur a au moins un role 
+            var roleName = (await _userManager.GetRolesAsync(appUser))[0];
+            var role = await _roleManager.FindByNameAsync(roleName);
+
+
+            var roleClaims = new List<Claim>();
+            roleClaims.Add(new Claim(ClaimTypes.Role, roleName));
+            roleClaims.AddRange(await _roleManager.GetClaimsAsync(role));
 
             string ipAddress = IpHelper.GetIpAddress();
 
@@ -184,7 +193,8 @@ namespace Persistence.Repository
                 new Claim(ClaimTypes.Surname, appUser.FirstName),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             }
-            .Union(userClaims);
+            .Union(userClaims)
+            .Union(roleClaims);
 
             var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key));
             var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);

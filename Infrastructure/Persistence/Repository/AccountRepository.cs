@@ -9,6 +9,7 @@ using Microsoft.Extensions.Options;
 using Persistence.Contexts;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using Application.Enums;
 
 namespace Persistence.Repository
 {
@@ -84,6 +85,8 @@ namespace Persistence.Repository
             }
 
             if (!result.Succeeded) throw new ApiException($"{errorMessage}");
+            //grant to the registered user all the claim of a voter
+            await _userManager.AddToRoleAsync(voter, EnumRole.Voter.ToString());
 
             var emailConfirmationToken = await GenerateEmailConfirmationTokenAsync(voter, origin);
 
@@ -93,36 +96,6 @@ namespace Persistence.Repository
                 AccessToken = new AccessToken
                 {
                     Value = emailConfirmationToken,
-                },
-                IsSuccess = true
-            };
-        }
-
-
-
-        public async Task<AuthenticationModel> RegisterAsync(Voter voter, string roleName, string password, string origin)
-        {
-            var voterWithSameUserName = await _userManager.FindByNameAsync(voter.UserName);
-            if (voterWithSameUserName != null) throw new ApiException($"Username '{voter.UserName}' is already taken.");
-
-            var result = await _userManager.CreateAsync(voter, password);
-            var errorMessage = new StringBuilder();
-
-            foreach (var error in result.Errors)
-            {
-                errorMessage.Append(error.Description);
-            }
-
-            if (!result.Succeeded) throw new ApiException($"{errorMessage}");
-            await _userManager.AddToRoleAsync(voter, roleName);
-
-            return new AuthenticationModel
-            {
-                Voter = voter,
-
-                AccessToken = new AccessToken
-                {
-                    Value = "done",
                 },
                 IsSuccess = true
             };

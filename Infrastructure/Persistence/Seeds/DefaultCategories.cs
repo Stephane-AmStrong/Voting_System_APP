@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Persistence.Repository;
 using Domain.Entities;
+using Persistence.Contexts;
 
 namespace Persistence.Seeds
 {
@@ -15,7 +16,7 @@ namespace Persistence.Seeds
         {
             using (var scope = webApp.Services.CreateScope())
             {
-                var categoryRepository = scope.ServiceProvider.GetRequiredService<CategoryRepository>();
+                var categoryRepository = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
                 string[] categoriesToSeed =
                 {
@@ -36,8 +37,10 @@ namespace Persistence.Seeds
                         Name = categoriesToSeed[i],
                     };
 
-                    if (!await categoryRepository.ExistAsync(category)) await categoryRepository.CreateAsync(category);
+                    if (!categoryRepository.Categories.Any(x=>x.Name == category.Name)) categoryRepository.Categories.Add(category);
                 }
+
+                await categoryRepository.SaveChangesAsync();
             }
 
             return webApp;

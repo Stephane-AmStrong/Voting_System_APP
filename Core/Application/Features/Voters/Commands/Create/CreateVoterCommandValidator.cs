@@ -16,18 +16,14 @@ namespace Application.Features.Voters.Commands.Create
 
         public CreateVoterCommandValidator(IRepositoryWrapper repository, IMapper mapper)
         {
-            /*
-                public string FirstName { get; set; }
-                public string LastName { get; set; }
-                public DateTime Birthday { get; set; } 
-            */
             _repository = repository;
             _mapper = mapper;
 
+
             RuleFor(p => p.FirstName)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
-                .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 charcategoryrs.");
+                 .NotEmpty().WithMessage("{PropertyName} is required.")
+                 .NotNull()
+                 .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 charcategoryrs.");
 
             RuleFor(p => p.LastName)
                 .NotEmpty().WithMessage("{PropertyName} is required.")

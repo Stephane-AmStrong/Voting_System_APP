@@ -19,6 +19,8 @@ using Application.Features.Voters.Commands.Create;
 using Application.Features.Voters.Queries.GetById;
 using Application.Features.Voters.Queries.GetPagedList;
 using Application.Features.Voters.Commands.Update;
+using Application.Features.Candidates.Commands.AddToCategory;
+using Application.Features.Voters.Commands.ChangeAge;
 
 namespace Application.Mappings
 {
@@ -35,6 +37,7 @@ namespace Application.Mappings
             CreateMap<AuthenticationModel, AuthenticationViewModel>().ReverseMap();
 
             CreateMap<Candidate, CreateCandidateCommand>().ReverseMap();
+            CreateMap<Candidate, AddCandidateToCategoryCommand>().ReverseMap();
             CreateMap<Candidate, CandidateViewModel>().ReverseMap();
             CreateMap<Candidate, CandidatesViewModel>().ReverseMap();
             CreateMap<Candidate, UpdateCandidateCommand>().ReverseMap();
@@ -48,6 +51,7 @@ namespace Application.Mappings
             CreateMap<Vote, VotesViewModel>().ReverseMap();
 
             CreateMap<Voter, CreateVoterCommand>().ReverseMap();
+            CreateMap<Voter, ChangeAgeVoterCommand>().ReverseMap();
             CreateMap<Voter, VoterViewModel>().ReverseMap();
             CreateMap<Voter, VotersViewModel>().ReverseMap();
             CreateMap<Voter, UpdateVoterCommand>().ReverseMap();

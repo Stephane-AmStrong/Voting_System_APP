@@ -2,51 +2,37 @@
 using AutoMapper;
 using Domain.Entities;
 using FluentValidation;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.Features.Votes.Commands.Create
+namespace Application.Features.Candidates.Commands.AddToCategory
 {
-    public class CreateVoteCommandValidator : AbstractValidator<CreateVoteCommand>
+    public class AddCandidateToCategoryCommandValidator : AbstractValidator<AddCandidateToCategoryCommand>
     {
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
 
-
-        public CreateVoteCommandValidator(IRepositoryWrapper repository, IMapper mapper)
+        public AddCandidateToCategoryCommandValidator(IRepositoryWrapper repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
-
 
             RuleFor(p => p.CandidateId)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
                 .Must(BeAValidGuid).WithMessage("{PropertyName} is required.")
                 .MustAsync(CandidateMustExist).WithMessage("Candidate with id: {PropertyName}, hasn't been found.");
-            
+
             RuleFor(p => p.CategoryId)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
                 .Must(BeAValidGuid).WithMessage("{PropertyName} is required.")
                 .MustAsync(CategoryMustExist).WithMessage("Category with id: {PropertyName}, hasn't been found.");
-
-            RuleFor(p => p)
-                .MustAsync(IsUnique).WithMessage("{PropertyName} already exists.")
-                .MustAsync(VoterBelongsToCategoryAsync).WithMessage("This candidate does not belong to this category.");
-
         }
 
         private bool BeAValidGuid(Guid id)
         {
             return !id.Equals(new Guid());
-        }
-
-        private async Task<bool> IsUnique(CreateVoteCommand voteCommand, CancellationToken cancellationToken)
-        {
-            var vote = _mapper.Map<Vote>(voteCommand);
-            return !await _repository.Vote.ExistAsync(vote);
         }
 
         private async Task<bool> CandidateMustExist(Guid id, CancellationToken cancellationToken)
@@ -59,14 +45,6 @@ namespace Application.Features.Votes.Commands.Create
         {
             var category = await _repository.Category.GetByIdAsync(id);
             return category != null;
-        }
-
-        private async Task<bool> VoterBelongsToCategoryAsync(CreateVoteCommand voteCommand, CancellationToken cancellationToken)
-        {
-            if (!await CandidateMustExist(voteCommand.CandidateId, cancellationToken) || !await CategoryMustExist(voteCommand.CategoryId, cancellationToken)) return false;
-
-            var category = await _repository.Category.GetByIdAsync(voteCommand.CategoryId);
-            return category.Candidates.Any(x => x.Id == voteCommand.CandidateId);
         }
     }
 }

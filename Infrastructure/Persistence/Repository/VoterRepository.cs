@@ -8,19 +8,28 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Application.Exceptions;
+using System.Text;
+using Application.Enums;
+using Microsoft.AspNetCore.WebUtilities;
+using Application.Models;
 
 namespace Persistence.Repository
 {
     public class VoterRepository : RepositoryBase<Voter>, IVoterRepository
     {
+        private readonly UserManager<Voter> _userManager;
         private ISortHelper<Voter> _sortHelper;
 
         public VoterRepository
         (
             AppDbContext appDbContext,
+            UserManager<Voter> userManager,
             ISortHelper<Voter> sortHelper
         ) : base(appDbContext)
         {
+            _userManager = userManager;
             _sortHelper = sortHelper;
         }
 
@@ -46,35 +55,25 @@ namespace Persistence.Repository
 
         public async Task<Voter> GetByIdAsync(string id)
         {
-            return await BaseFindByCondition(voter => voter.Id.Equals(id))
+            return await _userManager.Users.Where(voter => voter.Id.Equals(id))
                 .FirstOrDefaultAsync();
         }
 
 
         public async Task<bool> ExistAsync(Voter voter)
         {
-            return await BaseFindByCondition(x => x.FirstName == voter.FirstName && x.LastName == voter.LastName)
+            return await _userManager.Users.Where(x => x.FirstName == voter.FirstName && x.LastName == voter.LastName)
                 .AnyAsync();
-        }
-
-        public async Task CreateAsync(Voter voter)
-        {
-            await BaseCreateAsync(voter);
         }
 
         public async Task UpdateAsync(Voter voter)
         {
-            await BaseUpdateAsync(voter);
-        }
-
-        public async Task UpdateAsync(IEnumerable<Voter> voters)
-        {
-            await BaseUpdateAsync(voters);
+            await _userManager.UpdateAsync(voter);
         }
 
         public async Task DeleteAsync(Voter voter)
         {
-            await BaseDeleteAsync(voter);
+            await _userManager.DeleteAsync(voter);
         }
 
         private void ApplyFilters(ref IQueryable<Voter> voters, GetVotersQuery votersQuery)
@@ -101,7 +100,6 @@ namespace Persistence.Repository
 
             voters = voters.Where(x => x.FirstName.Contains(searchTerm.Trim(), StringComparison.OrdinalIgnoreCase) || x.LastName.Contains(searchTerm.Trim(), StringComparison.OrdinalIgnoreCase));
         }
-
 
     }
 }

@@ -29,11 +29,6 @@ namespace Application.Features.Candidates.Commands.Create
                 .NotNull()
                 .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
 
-            RuleFor(p => p.CategoryId)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
-                .Must(BeAValidGuid).WithMessage("{PropertyName} is required.");
-
             RuleFor(p => p)
                 .MustAsync(IsUnique).WithMessage("Candidate already exists.");
         }
@@ -46,7 +41,7 @@ namespace Application.Features.Candidates.Commands.Create
         private async Task<bool> IsUnique(CreateCandidateCommand candidateCommand, CancellationToken cancellationToken)
         {
             var candidate = _mapper.Map<Candidate>(candidateCommand);
-            return await _repository.Candidate.ExistAsync(candidate);
+            return !await _repository.Candidate.ExistAsync(candidate);
         }
     }
 }

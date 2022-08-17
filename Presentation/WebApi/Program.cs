@@ -48,7 +48,7 @@ builder.Services.AddControllers().AddNewtonsoftJson(o =>
     });
 });
 
-//builder.Services.ConfigureClaimPolicy();
+builder.Services.ConfigureClaimPolicy();
 builder.Services.AddApiVersioningExtension();
 builder.Services.AddHealthChecks();
 builder.Services.AddScoped<IAuthenticatedUserService, AuthenticatedUserService>();
@@ -58,13 +58,21 @@ var app = builder.Build();
 
 try
 {
-    //Log.Information("Starting Seeding Default Categories");
-    //await app.SeedDefaultCategoriesAsync();
-    //Log.Information("Categories Seeding Complete");
+    Log.Information("Starting Seeding Default Roles");
+    await app.SeedDefaultRolesAsync();
+    Log.Information("Roles Seeding Complete");
+    
+    Log.Information("Starting Seeding SuperAdmin");
+    await app.SeedSuperAdminAsync();
+    Log.Information("SuperAdmin Seeding Complete");
+    
+    Log.Information("Starting Seeding Default Categories");
+    await app.SeedDefaultCategoriesAsync();
+    Log.Information("Categories Seeding Complete");
 
-    //Log.Information("Starting Seeding Default Candidates");
-    //await app.SeedDefaulCandidatesAsync();
-    //Log.Information("Candidates Seeding Complete");
+    Log.Information("Starting Seeding Default Candidates");
+    await app.SeedDefaulCandidatesAsync();
+    Log.Information("Candidates Seeding Complete");
 
     if (app.Environment.IsDevelopment())
     {

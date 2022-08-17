@@ -1,10 +1,11 @@
 ﻿using Application.Features.Votes.Commands.Create;
 using Application.Features.Votes.Queries.GetById;
+using Application.Features.Votes.Queries.GetNumberOfVotesForACandidate;
 using Application.Features.Votes.Queries.GetPagedList;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-
+using System.Security.Claims;
 
 namespace WebApi.Controllers.v1
 {
@@ -24,6 +25,7 @@ namespace WebApi.Controllers.v1
         /// <param name="votesQuery"></param>
         /// <returns></returns>
         [HttpGet]
+        [Authorize(Policy = "vote.read.policy")]
         public async Task<IActionResult> Get([FromQuery] GetVotesQuery votesQuery)
         {
             var votes = await Mediator.Send(votesQuery);
@@ -38,9 +40,23 @@ namespace WebApi.Controllers.v1
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
+        [Authorize(Policy = "vote.read.policy")]
         public async Task<IActionResult> Get(Guid id)
         {
             return Ok(await Mediator.Send(new GetVoteByIdQuery { Id = id }));
+        }
+
+
+        /// <summary>
+        /// Retreives the Number of votes for candidate with the specified.
+        /// </summary>
+        /// <param name="CandidateId"></param>
+        /// <returns></returns>
+        [HttpGet("number-of-votes-for-candidate/{CandidateId}")]
+        [Authorize(Policy = "vote.read.policy")]
+        public async Task<IActionResult> GetNumberOfVotesForACandidate(Guid CandidateId)
+        {
+            return Ok(await Mediator.Send(new GetNumberOfVotesForACandidateQuery { CandidateId = CandidateId }));
         }
 
 
@@ -52,10 +68,12 @@ namespace WebApi.Controllers.v1
         /// <response code="201">Returns the newly created command</response>
         /// <response code="400">If the command is null</response>            
         [HttpPost]
+        [Authorize(Policy = "vote.write.policy")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Post(CreateVoteCommand command)
         {
+            command.VoterId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             return Ok(await Mediator.Send(command));
         }
     }

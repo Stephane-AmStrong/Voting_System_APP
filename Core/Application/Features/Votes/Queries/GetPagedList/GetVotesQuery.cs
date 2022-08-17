@@ -14,7 +14,7 @@ namespace Application.Features.Votes.Queries.GetPagedList
     {
         public GetVotesQuery()
         {
-            OrderBy = "name";
+            OrderBy = "categoryid";
         }
 
         public string WithTheName { get; set; }

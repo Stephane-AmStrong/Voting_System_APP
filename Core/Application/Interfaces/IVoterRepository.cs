@@ -15,9 +15,7 @@ namespace Application.Interfaces
         Task<Voter> GetByIdAsync(string id);
         Task<bool> ExistAsync(Voter voter);
 
-        Task CreateAsync(Voter voter);
         Task UpdateAsync(Voter voter);
-        Task UpdateAsync(IEnumerable<Voter> events);
         Task DeleteAsync(Voter voter);
     }
 }

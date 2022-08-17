@@ -47,7 +47,15 @@ namespace Persistence.Repository
         public async Task<Vote> GetByIdAsync(Guid id)
         {
             return await BaseFindByCondition(vote => vote.Id.Equals(id))
+                .Include(x => x.Category)
+                .Include(x => x.Voter)
                 .FirstOrDefaultAsync();
+        }
+
+
+        public async Task<int> GetNumberOfVoteOfCandidateByIdAsync(Guid candidateId)
+        {
+            return await BaseFindByCondition(vote => vote.CandidateId == candidateId).CountAsync();
         }
 
 
@@ -102,7 +110,5 @@ namespace Persistence.Repository
 
             votes = votes.Where(x => x.Category.Name.Contains(searchTerm.Trim(), StringComparison.OrdinalIgnoreCase) || x.Voter.FirstName.Contains(searchTerm.Trim(), StringComparison.OrdinalIgnoreCase) || x.Voter.LastName.Contains(searchTerm.Trim(), StringComparison.OrdinalIgnoreCase));
         }
-
-
     }
 }

@@ -12,10 +12,10 @@ namespace Application.Features.Votes.Commands.Create
 {
     public class CreateVoteCommand : IRequest<VoteViewModel>
     {
-        public int InStock { get; set; }
-        public int StockAfter { get; set; }
-        public DateTime UpdateAt { get; set; }
-        public Guid ItemId { get; set; }
+        [System.Text.Json.Serialization.JsonIgnore]
+        public string VoterId { get; set; }
+        public Guid CategoryId { get; set; }
+        public Guid CandidateId { get; set; }
     }
 
     internal class CreateVoteCommandHandler : IRequestHandler<CreateVoteCommand, VoteViewModel>
