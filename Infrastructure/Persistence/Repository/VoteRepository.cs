@@ -91,17 +91,18 @@ namespace Persistence.Repository
                 .Include(x => x.Category)
                 .Include(x => x.Voter);
 
-            /*
-            if (votesQuery.MinCreateAt != null)
+           
+            if (votesQuery.WithCandidateId!=null && votesQuery.WithCandidateId != new Guid())
             {
-                votes = votes.Where(x => x.CreateAt >= votesQuery.MinCreateAt);
+                votes = votes.Where(x => x.CandidateId == votesQuery.WithCandidateId);
             }
 
-            if (votesQuery.MaxCreateAt != null)
+           
+            if (votesQuery.WithCategoryId!=null && votesQuery.WithCategoryId != new Guid())
             {
-                votes = votes.Where(x => x.CreateAt < votesQuery.MaxCreateAt);
+                votes = votes.Where(x => x.CategoryId == votesQuery.WithCategoryId);
             }
-            */
+
         }
 
         private static void PerformSearch(ref IQueryable<Vote> votes, string searchTerm)

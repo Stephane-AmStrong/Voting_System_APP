@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Persistence.Repository;
 using Domain.Entities;
 using Persistence.Contexts;
+using Application.Interfaces;
 
 namespace Persistence.Seeds
 {
@@ -16,13 +17,14 @@ namespace Persistence.Seeds
         {
             using (var scope = webApp.Services.CreateScope())
             {
-                var categoryRepository = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                var repository = scope.ServiceProvider.GetRequiredService<IRepositoryWrapper>();
 
                 string[] categoriesToSeed =
                 {
                     "President",
                     "Vice President",
                     "Secretary",
+                    "Mon role tout beau tout propre",
                 };
 
                 for (int i = 0; i < categoriesToSeed.Length; i++)
@@ -37,10 +39,10 @@ namespace Persistence.Seeds
                         Name = categoriesToSeed[i],
                     };
 
-                    if (!categoryRepository.Categories.Any(x=>x.Name == category.Name)) categoryRepository.Categories.Add(category);
+                    if (!await repository.Category.ExistAsync(category)) await repository.Category.CreateAsync(category);
                 }
 
-                await categoryRepository.SaveChangesAsync();
+                await repository.SaveAsync();
             }
 
             return webApp;

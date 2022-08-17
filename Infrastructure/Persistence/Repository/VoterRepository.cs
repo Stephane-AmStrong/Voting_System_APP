@@ -81,17 +81,16 @@ namespace Persistence.Repository
             voters = BaseFindAll()
                 .Include(x => x.Votes);
 
-            /*
-            if (votersQuery.MinCreateAt != null)
+
+            if (!string.IsNullOrEmpty(votersQuery.WithFirstName))
             {
-                voters = voters.Where(x => x.CreateAt >= votersQuery.MinCreateAt);
+                voters = voters.Where(x => x.FirstName.Equals(votersQuery.WithFirstName, StringComparison.OrdinalIgnoreCase));
             }
 
-            if (votersQuery.MaxCreateAt != null)
+            if (!string.IsNullOrEmpty(votersQuery.WithLastName))
             {
-                voters = voters.Where(x => x.CreateAt < votersQuery.MaxCreateAt);
+                voters = voters.Where(x => x.LastName.Equals(votersQuery.WithLastName, StringComparison.OrdinalIgnoreCase));
             }
-            */
         }
 
         private static void PerformSearch(ref IQueryable<Voter> voters, string searchTerm)

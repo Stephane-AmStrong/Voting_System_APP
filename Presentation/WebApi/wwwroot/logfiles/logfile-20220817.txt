@@ -1942,3 +1942,254 @@ Application.Exceptions.ApiException: Candidate with id: 4f0ec52e-1762-4fd9-8ab6-
    at WebApi.Middlewares.ErrorHandlerMiddleware.InvokeAsync(HttpContext httpContext) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Presentation\WebApi\Middlewares\ErrorHandlerMiddleware.cs:line 29
 2022-08-17 17:56:16.207 +01:00 [INF] Returned Paged List of Candidates from database.
 2022-08-17 17:56:30.631 +01:00 [INF] Returned Number of vote of candidate with id: 09dbda6f-32d7-4c5f-bd5b-faa3a84366f0
+2022-08-17 18:31:47.264 +01:00 [INF] Starting Seeding Default Roles
+2022-08-17 18:31:49.803 +01:00 [INF] Roles Seeding Complete
+2022-08-17 18:31:49.804 +01:00 [INF] Starting Seeding SuperAdmin
+2022-08-17 18:31:49.895 +01:00 [INF] SuperAdmin Seeding Complete
+2022-08-17 18:31:49.896 +01:00 [INF] Starting Seeding Default Categories
+2022-08-17 18:31:50.005 +01:00 [INF] Categories Seeding Complete
+2022-08-17 18:31:50.005 +01:00 [INF] Starting Seeding Default Candidates
+2022-08-17 18:31:50.051 +01:00 [INF] Candidates Seeding Complete
+2022-08-17 18:33:33.130 +01:00 [INF] Authentication attempt with email: superadmin@mail.com
+2022-08-17 18:33:33.559 +01:00 [INF] Authentication succeeds
+2022-08-17 18:33:33.809 +01:00 [INF] RefreshToken succeeds
+2022-08-17 18:38:46.570 +01:00 [INF] Starting Seeding Default Roles
+2022-08-17 18:38:49.176 +01:00 [INF] Roles Seeding Complete
+2022-08-17 18:38:49.179 +01:00 [INF] Starting Seeding SuperAdmin
+2022-08-17 18:38:49.326 +01:00 [INF] SuperAdmin Seeding Complete
+2022-08-17 18:38:49.328 +01:00 [INF] Starting Seeding Default Categories
+2022-08-17 18:38:49.433 +01:00 [INF] Categories Seeding Complete
+2022-08-17 18:38:49.433 +01:00 [INF] Starting Seeding Default Candidates
+2022-08-17 18:38:49.482 +01:00 [INF] Candidates Seeding Complete
+2022-08-17 18:39:17.417 +01:00 [INF] Returned Paged List of Categories from database.
+2022-08-17 18:39:50.145 +01:00 [ERR] 
+
+System.ArgumentException: Index name is null for the given type and no default index is set. Map an index name using ConnectionSettings.DefaultMappingFor<TDocument>() or set a default index using ConnectionSettings.DefaultIndex().
+   at Nest.IndexNameResolver.ValidateIndexName(String indexName)
+   at Nest.IndexNameResolver.Resolve(Type type)
+   at Nest.IndexNameResolver.Resolve(IndexName i)
+   at System.Linq.Enumerable.SelectListIterator`2.MoveNext()
+   at System.Linq.Enumerable.DistinctIterator`1.MoveNext()
+   at System.String.Join(String separator, IEnumerable`1 values)
+   at Nest.RouteValues.Resolve(IConnectionSettingsValues configurationValues)
+   at Nest.ApiUrls.Resolve(RouteValues routeValues, IConnectionSettingsValues settings)
+   at Nest.ElasticClient.DoRequest[TRequest,TResponse](TRequest p, IRequestParameters parameters, Action`2 forceConfiguration)
+   at Nest.ElasticClient.Search[TDocument](ISearchRequest request)
+   at Application.Features.Categories.Queries.GetById.GetCategoryByIdQueryHandler.Handle(GetCategoryByIdQuery query, CancellationToken cancellationToken) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Core\Application\Features\Categories\Queries\GetById\GetCategoryByIdQuery.cs:line 35
+   at Application.Behaviours.ValidationBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Core\Application\Behaviours\ValidationBehaviour.cs:line 30
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPostProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPreProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at WebApi.Controllers.v1.CategoriesController.Get(Guid id) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Presentation\WebApi\Controllers\v1\CategoriesController.cs:line 45
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at WebApi.Middlewares.ErrorHandlerMiddleware.InvokeAsync(HttpContext httpContext) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Presentation\WebApi\Middlewares\ErrorHandlerMiddleware.cs:line 29
+2022-08-17 18:42:57.510 +01:00 [INF] Starting Seeding Default Roles
+2022-08-17 18:43:00.596 +01:00 [INF] Roles Seeding Complete
+2022-08-17 18:43:00.597 +01:00 [INF] Starting Seeding SuperAdmin
+2022-08-17 18:43:00.675 +01:00 [INF] SuperAdmin Seeding Complete
+2022-08-17 18:43:00.675 +01:00 [INF] Starting Seeding Default Categories
+2022-08-17 18:43:00.782 +01:00 [INF] Categories Seeding Complete
+2022-08-17 18:43:00.783 +01:00 [INF] Starting Seeding Default Candidates
+2022-08-17 18:43:00.829 +01:00 [INF] Candidates Seeding Complete
+2022-08-17 18:43:48.048 +01:00 [INF] Returned Category with id: 104a6833-e23b-4ecc-9781-e9dfe987b8a4
+2022-08-17 20:29:56.910 +01:00 [INF] Starting Seeding Default Roles
+2022-08-17 20:30:01.409 +01:00 [INF] Roles Seeding Complete
+2022-08-17 20:30:01.409 +01:00 [INF] Starting Seeding SuperAdmin
+2022-08-17 20:30:01.506 +01:00 [INF] SuperAdmin Seeding Complete
+2022-08-17 20:30:01.506 +01:00 [INF] Starting Seeding Default Categories
+2022-08-17 20:30:01.635 +01:00 [INF] Categories Seeding Complete
+2022-08-17 20:30:01.635 +01:00 [INF] Starting Seeding Default Candidates
+2022-08-17 20:30:01.701 +01:00 [INF] Candidates Seeding Complete
+2022-08-17 20:30:45.990 +01:00 [INF] Starting Seeding Default Roles
+2022-08-17 20:30:49.573 +01:00 [INF] Roles Seeding Complete
+2022-08-17 20:30:49.574 +01:00 [INF] Starting Seeding SuperAdmin
+2022-08-17 20:30:49.676 +01:00 [INF] SuperAdmin Seeding Complete
+2022-08-17 20:30:49.677 +01:00 [INF] Starting Seeding Default Categories
+2022-08-17 20:30:50.208 +01:00 [INF] Categories Seeding Complete
+2022-08-17 20:30:50.209 +01:00 [INF] Starting Seeding Default Candidates
+2022-08-17 20:30:50.262 +01:00 [INF] Candidates Seeding Complete
+2022-08-17 20:56:41.740 +01:00 [INF] Starting Seeding Default Roles
+2022-08-17 20:56:44.299 +01:00 [INF] Roles Seeding Complete
+2022-08-17 20:56:44.299 +01:00 [INF] Starting Seeding SuperAdmin
+2022-08-17 20:56:44.363 +01:00 [INF] SuperAdmin Seeding Complete
+2022-08-17 20:56:44.363 +01:00 [INF] Starting Seeding Default Categories
+2022-08-17 20:56:44.720 +01:00 [INF] Categories Seeding Complete
+2022-08-17 20:56:44.720 +01:00 [INF] Starting Seeding Default Candidates
+2022-08-17 20:56:45.004 +01:00 [FTL] Host terminated unexpectedly
+System.InvalidOperationException: The LINQ expression 'DbSet<Category>()
+    .Where(c => c.Name.Equals(
+        value: __categoriesQuery_WithName_0, 
+        comparisonType: OrdinalIgnoreCase))' could not be translated. Additional information: Translation of the 'string.Equals' overload with a 'StringComparison' parameter is not supported. See https://go.microsoft.com/fwlink/?linkid=2129535 for more information. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.<VisitMethodCall>g__CheckTranslated|15_0(ShapedQueryExpression translated, <>c__DisplayClass15_0& )
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)
+   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)
+   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutor[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass9_0`1.<Execute>b__0()
+   at Microsoft.EntityFrameworkCore.Query.Internal.CompiledQueryCache.GetOrAddQuery[TResult](Object cacheKey, Func`1 compiler)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at System.Linq.Queryable.Any[TSource](IQueryable`1 source)
+   at Persistence.Repository.CategoryRepository.PerformSearch(IQueryable`1& categories, String searchTerm) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Infrastructure\Persistence\Repository\CategoryRepository.cs:line 93
+   at Persistence.Repository.CategoryRepository.GetPagedListAsync(GetCategoriesQuery categoriesQuery) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Infrastructure\Persistence\Repository\CategoryRepository.cs:line 33
+   at Persistence.Seeds.DefaultCandidates.SeedDefaulCandidatesAsync(WebApplication webApp) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Infrastructure\Persistence\Seeds\DefaultCandidates.cs:line 43
+   at Program.<Main>$(String[] args) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Presentation\WebApi\Program.cs:line 75
+2022-08-17 20:57:36.534 +01:00 [INF] Starting Seeding Default Roles
+2022-08-17 20:57:39.621 +01:00 [INF] Roles Seeding Complete
+2022-08-17 20:57:39.622 +01:00 [INF] Starting Seeding SuperAdmin
+2022-08-17 20:57:39.727 +01:00 [INF] SuperAdmin Seeding Complete
+2022-08-17 20:57:39.728 +01:00 [INF] Starting Seeding Default Categories
+2022-08-17 20:57:39.841 +01:00 [INF] Categories Seeding Complete
+2022-08-17 20:57:39.842 +01:00 [INF] Starting Seeding Default Candidates
+2022-08-17 20:58:04.555 +01:00 [FTL] Host terminated unexpectedly
+System.InvalidOperationException: The LINQ expression 'DbSet<Category>()
+    .Where(c => c.Name.Equals(
+        value: __categoriesQuery_WithName_0, 
+        comparisonType: OrdinalIgnoreCase))' could not be translated. Additional information: Translation of the 'string.Equals' overload with a 'StringComparison' parameter is not supported. See https://go.microsoft.com/fwlink/?linkid=2129535 for more information. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.<VisitMethodCall>g__CheckTranslated|15_0(ShapedQueryExpression translated, <>c__DisplayClass15_0& )
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)
+   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)
+   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutor[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass9_0`1.<Execute>b__0()
+   at Microsoft.EntityFrameworkCore.Query.Internal.CompiledQueryCache.GetOrAddQuery[TResult](Object cacheKey, Func`1 compiler)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at System.Linq.Queryable.Any[TSource](IQueryable`1 source)
+   at Persistence.Repository.CategoryRepository.PerformSearch(IQueryable`1& categories, String searchTerm) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Infrastructure\Persistence\Repository\CategoryRepository.cs:line 93
+   at Persistence.Repository.CategoryRepository.GetPagedListAsync(GetCategoriesQuery categoriesQuery) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Infrastructure\Persistence\Repository\CategoryRepository.cs:line 33
+   at Persistence.Seeds.DefaultCandidates.SeedDefaulCandidatesAsync(WebApplication webApp) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Infrastructure\Persistence\Seeds\DefaultCandidates.cs:line 43
+   at Program.<Main>$(String[] args) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Presentation\WebApi\Program.cs:line 75
+2022-08-17 20:58:47.758 +01:00 [INF] Starting Seeding Default Roles
+2022-08-17 20:58:50.683 +01:00 [INF] Roles Seeding Complete
+2022-08-17 20:58:50.684 +01:00 [INF] Starting Seeding SuperAdmin
+2022-08-17 20:58:50.755 +01:00 [INF] SuperAdmin Seeding Complete
+2022-08-17 20:58:50.756 +01:00 [INF] Starting Seeding Default Categories
+2022-08-17 20:58:50.887 +01:00 [INF] Categories Seeding Complete
+2022-08-17 20:58:50.887 +01:00 [INF] Starting Seeding Default Candidates
+2022-08-17 20:58:54.368 +01:00 [FTL] Host terminated unexpectedly
+System.InvalidOperationException: The LINQ expression 'DbSet<Category>()
+    .Where(c => c.Name.Equals(
+        value: __categoriesQuery_WithName_0, 
+        comparisonType: OrdinalIgnoreCase))' could not be translated. Additional information: Translation of the 'string.Equals' overload with a 'StringComparison' parameter is not supported. See https://go.microsoft.com/fwlink/?linkid=2129535 for more information. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.<VisitMethodCall>g__CheckTranslated|15_0(ShapedQueryExpression translated, <>c__DisplayClass15_0& )
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)
+   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)
+   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutor[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass9_0`1.<Execute>b__0()
+   at Microsoft.EntityFrameworkCore.Query.Internal.CompiledQueryCache.GetOrAddQuery[TResult](Object cacheKey, Func`1 compiler)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at System.Linq.Queryable.Any[TSource](IQueryable`1 source)
+   at Persistence.Repository.CategoryRepository.PerformSearch(IQueryable`1& categories, String searchTerm) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Infrastructure\Persistence\Repository\CategoryRepository.cs:line 93
+   at Persistence.Repository.CategoryRepository.GetPagedListAsync(GetCategoriesQuery categoriesQuery) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Infrastructure\Persistence\Repository\CategoryRepository.cs:line 33
+   at Persistence.Seeds.DefaultCandidates.SeedDefaulCandidatesAsync(WebApplication webApp) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Infrastructure\Persistence\Seeds\DefaultCandidates.cs:line 43
+   at Program.<Main>$(String[] args) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Presentation\WebApi\Program.cs:line 75
+2022-08-17 20:58:59.782 +01:00 [INF] Starting Seeding Default Roles
+2022-08-17 20:59:02.094 +01:00 [INF] Roles Seeding Complete
+2022-08-17 20:59:02.094 +01:00 [INF] Starting Seeding SuperAdmin
+2022-08-17 20:59:02.168 +01:00 [INF] SuperAdmin Seeding Complete
+2022-08-17 20:59:02.168 +01:00 [INF] Starting Seeding Default Categories
+2022-08-17 20:59:02.308 +01:00 [INF] Categories Seeding Complete
+2022-08-17 20:59:02.308 +01:00 [INF] Starting Seeding Default Candidates
+2022-08-17 20:59:47.919 +01:00 [FTL] Host terminated unexpectedly
+System.InvalidOperationException: The LINQ expression 'DbSet<Category>()
+    .Where(c => c.Name.Equals(
+        value: __categoriesQuery_WithName_0, 
+        comparisonType: OrdinalIgnoreCase))' could not be translated. Additional information: Translation of the 'string.Equals' overload with a 'StringComparison' parameter is not supported. See https://go.microsoft.com/fwlink/?linkid=2129535 for more information. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.<VisitMethodCall>g__CheckTranslated|15_0(ShapedQueryExpression translated, <>c__DisplayClass15_0& )
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)
+   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)
+   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutor[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass9_0`1.<Execute>b__0()
+   at Microsoft.EntityFrameworkCore.Query.Internal.CompiledQueryCache.GetOrAddQuery[TResult](Object cacheKey, Func`1 compiler)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at System.Linq.Queryable.Any[TSource](IQueryable`1 source)
+   at Persistence.Repository.CategoryRepository.PerformSearch(IQueryable`1& categories, String searchTerm) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Infrastructure\Persistence\Repository\CategoryRepository.cs:line 93
+   at Persistence.Repository.CategoryRepository.GetPagedListAsync(GetCategoriesQuery categoriesQuery) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Infrastructure\Persistence\Repository\CategoryRepository.cs:line 33
+   at Persistence.Seeds.DefaultCandidates.SeedDefaulCandidatesAsync(WebApplication webApp) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Infrastructure\Persistence\Seeds\DefaultCandidates.cs:line 43
+   at Program.<Main>$(String[] args) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Presentation\WebApi\Program.cs:line 75
+2022-08-17 21:00:40.844 +01:00 [INF] Starting Seeding Default Roles
+2022-08-17 21:00:43.317 +01:00 [INF] Roles Seeding Complete
+2022-08-17 21:00:43.318 +01:00 [INF] Starting Seeding SuperAdmin
+2022-08-17 21:00:43.377 +01:00 [INF] SuperAdmin Seeding Complete
+2022-08-17 21:00:43.377 +01:00 [INF] Starting Seeding Default Categories
+2022-08-17 21:00:43.574 +01:00 [INF] Categories Seeding Complete
+2022-08-17 21:00:43.575 +01:00 [INF] Starting Seeding Default Candidates
+2022-08-17 21:00:51.027 +01:00 [FTL] Host terminated unexpectedly
+System.InvalidOperationException: The LINQ expression 'DbSet<Category>()
+    .Where(c => c.Name.Equals(
+        value: __categoriesQuery_WithName_0, 
+        comparisonType: OrdinalIgnoreCase))' could not be translated. Additional information: Translation of the 'string.Equals' overload with a 'StringComparison' parameter is not supported. See https://go.microsoft.com/fwlink/?linkid=2129535 for more information. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.<VisitMethodCall>g__CheckTranslated|15_0(ShapedQueryExpression translated, <>c__DisplayClass15_0& )
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)
+   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)
+   at Microsoft.EntityFrameworkCore.Query.QueryableMethodTranslatingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)
+   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutor[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass9_0`1.<Execute>b__0()
+   at Microsoft.EntityFrameworkCore.Query.Internal.CompiledQueryCache.GetOrAddQuery[TResult](Object cacheKey, Func`1 compiler)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)
+   at System.Linq.Queryable.Any[TSource](IQueryable`1 source)
+   at Persistence.Repository.CategoryRepository.PerformSearch(IQueryable`1& categories, String searchTerm) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Infrastructure\Persistence\Repository\CategoryRepository.cs:line 93
+   at Persistence.Repository.CategoryRepository.GetPagedListAsync(GetCategoriesQuery categoriesQuery) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Infrastructure\Persistence\Repository\CategoryRepository.cs:line 33
+   at Persistence.Seeds.DefaultCandidates.SeedDefaulCandidatesAsync(WebApplication webApp) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Infrastructure\Persistence\Seeds\DefaultCandidates.cs:line 43
+   at Program.<Main>$(String[] args) in D:\WORKSPACE\DotNet\IN_PROGRESS\Voting_System_APP\Presentation\WebApi\Program.cs:line 75
+2022-08-17 21:01:32.902 +01:00 [INF] Starting Seeding Default Roles
+2022-08-17 21:01:35.417 +01:00 [INF] Roles Seeding Complete
+2022-08-17 21:01:35.418 +01:00 [INF] Starting Seeding SuperAdmin
+2022-08-17 21:01:35.471 +01:00 [INF] SuperAdmin Seeding Complete
+2022-08-17 21:01:35.472 +01:00 [INF] Starting Seeding Default Categories
+2022-08-17 21:01:35.657 +01:00 [INF] Categories Seeding Complete
+2022-08-17 21:01:35.658 +01:00 [INF] Starting Seeding Default Candidates
+2022-08-17 21:01:39.664 +01:00 [INF] Candidates Seeding Complete
+2022-08-17 21:02:31.438 +01:00 [INF] Starting Seeding Default Roles
+2022-08-17 21:02:34.231 +01:00 [INF] Roles Seeding Complete
+2022-08-17 21:02:34.232 +01:00 [INF] Starting Seeding SuperAdmin
+2022-08-17 21:02:34.354 +01:00 [INF] SuperAdmin Seeding Complete
+2022-08-17 21:02:34.355 +01:00 [INF] Starting Seeding Default Categories
+2022-08-17 21:02:34.486 +01:00 [INF] Categories Seeding Complete
+2022-08-17 21:02:34.487 +01:00 [INF] Starting Seeding Default Candidates
+2022-08-17 21:02:40.666 +01:00 [INF] Candidates Seeding Complete
+2022-08-17 21:03:21.685 +01:00 [INF] Starting Seeding Default Roles
+2022-08-17 21:03:24.558 +01:00 [INF] Roles Seeding Complete
+2022-08-17 21:03:24.559 +01:00 [INF] Starting Seeding SuperAdmin
+2022-08-17 21:03:24.669 +01:00 [INF] SuperAdmin Seeding Complete
+2022-08-17 21:03:24.670 +01:00 [INF] Starting Seeding Default Categories
+2022-08-17 21:03:24.862 +01:00 [INF] Categories Seeding Complete
+2022-08-17 21:03:24.863 +01:00 [INF] Starting Seeding Default Candidates
+2022-08-17 21:03:26.726 +01:00 [INF] Candidates Seeding Complete
+2022-08-17 21:04:24.576 +01:00 [INF] Starting Seeding Default Roles
+2022-08-17 21:04:27.370 +01:00 [INF] Roles Seeding Complete
+2022-08-17 21:04:27.371 +01:00 [INF] Starting Seeding SuperAdmin
+2022-08-17 21:04:27.460 +01:00 [INF] SuperAdmin Seeding Complete
+2022-08-17 21:04:27.460 +01:00 [INF] Starting Seeding Default Categories
+2022-08-17 21:04:27.568 +01:00 [INF] Categories Seeding Complete
+2022-08-17 21:04:27.568 +01:00 [INF] Starting Seeding Default Candidates
+2022-08-17 21:04:29.133 +01:00 [INF] Candidates Seeding Complete

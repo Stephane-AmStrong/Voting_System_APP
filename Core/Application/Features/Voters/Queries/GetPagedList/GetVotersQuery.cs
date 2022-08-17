@@ -17,7 +17,8 @@ namespace Application.Features.Voters.Queries.GetPagedList
             OrderBy = "lastname";
         }
 
-        public string WithTheName { get; set; }
+        public string WithFirstName { get; set; }
+        public string WithLastName { get; set; }
     }
 
     internal class GetVotersQueryHandler : IRequestHandler<GetVotersQuery, PagedListResponse<VotersViewModel>>

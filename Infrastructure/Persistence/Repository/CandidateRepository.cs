@@ -69,17 +69,15 @@ namespace Persistence.Repository
         {
             candidates = BaseFindAll();
 
-            /*
-            if (candidatesQuery.MinCreateAt != null)
+            if (!string.IsNullOrEmpty(candidatesQuery.WithFirstName))
             {
-                candidates = candidates.Where(x => x.CreateAt >= candidatesQuery.MinCreateAt);
+                candidates = candidates.Where(x => x.FirstName.Equals(candidatesQuery.WithFirstName));
             }
 
-            if (candidatesQuery.MaxCreateAt != null)
+            if (!string.IsNullOrEmpty(candidatesQuery.WithLastName))
             {
-                candidates = candidates.Where(x => x.CreateAt < candidatesQuery.MaxCreateAt);
+                candidates = candidates.Where(x => x.LastName.Equals(candidatesQuery.WithLastName));
             }
-            */
         }
 
         private static void PerformSearch(ref IQueryable<Candidate> candidates, string searchTerm)

@@ -18,7 +18,7 @@ namespace Application.Features.Categories.Queries.GetPagedList
             OrderBy = "name";
         }
 
-        public string WithTheName { get; set; }
+        public string WithName { get; set; }
     }
 
     internal class GetCategoriesQueryHandler : IRequestHandler<GetCategoriesQuery, PagedListResponse<CategoriesViewModel>>

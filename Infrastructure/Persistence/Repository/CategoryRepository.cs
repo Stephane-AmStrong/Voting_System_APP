@@ -82,17 +82,10 @@ namespace Persistence.Repository
         {
             categories = BaseFindAll();
 
-            /*
-            if (categoriesQuery.MinCreateAt != null)
+            if (!string.IsNullOrEmpty(categoriesQuery.WithName))
             {
-                categories = categories.Where(x => x.CreateAt >= categoriesQuery.MinCreateAt);
+                categories = categories.Where(x => x.Name.Equals(categoriesQuery.WithName));
             }
-
-            if (categoriesQuery.MaxCreateAt != null)
-            {
-                categories = categories.Where(x => x.CreateAt < categoriesQuery.MaxCreateAt);
-            }
-            */
         }
 
         private static void PerformSearch(ref IQueryable<Category> categories, string searchTerm)

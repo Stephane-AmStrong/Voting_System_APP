@@ -17,7 +17,8 @@ namespace Application.Features.Votes.Queries.GetPagedList
             OrderBy = "categoryid";
         }
 
-        public string WithTheName { get; set; }
+        public Guid? WithCategoryId { get; set; }
+        public Guid? WithCandidateId { get; set; }
     }
 
     internal class GetVotesQueryHandler : IRequestHandler<GetVotesQuery, PagedListResponse<VotesViewModel>>

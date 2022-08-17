@@ -17,34 +17,31 @@ namespace Persistence.Seeds
         {
             using (var scope = webApp.Services.CreateScope())
             {
-                using (var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>())
+                using var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+                var superAdmin = await roleManager.FindByNameAsync(EnumRole.SuperAdmin.ToString());
+
+                if (superAdmin == null)
                 {
-                    var superAdmin = await roleManager.FindByNameAsync(EnumRole.SuperAdmin.ToString());
+                    superAdmin = new IdentityRole(EnumRole.SuperAdmin.ToString());
+                    await roleManager.CreateAsync(superAdmin);
 
-                    if (superAdmin == null)
+                    for (int i = 0; i < ClaimsStore.AllClaims.Count; i++)
                     {
-                        superAdmin = new IdentityRole(EnumRole.SuperAdmin.ToString());
-                        await roleManager.CreateAsync(superAdmin);
-
-                        for (int i = 0; i < ClaimsStore.AllClaims.Count; i++)
-                        {
-                            await roleManager.AddClaimAsync(superAdmin, ClaimsStore.AllClaims[i]);
-                        }
+                        await roleManager.AddClaimAsync(superAdmin, ClaimsStore.AllClaims[i]);
                     }
+                }
 
-                    var voter = await roleManager.FindByNameAsync(EnumRole.Voter.ToString());
+                var voter = await roleManager.FindByNameAsync(EnumRole.Voter.ToString());
 
-                    if (voter == null)
+                if (voter == null)
+                {
+                    voter = new IdentityRole(EnumRole.Voter.ToString());
+                    await roleManager.CreateAsync(voter);
+
+                    for (int i = 0; i < ClaimsStore.VoterClaims.Count; i++)
                     {
-                        voter = new IdentityRole(EnumRole.Voter.ToString());
-                        await roleManager.CreateAsync(voter);
-
-                        for (int i = 0; i < ClaimsStore.VoterClaims.Count; i++)
-                        {
-                            await roleManager.AddClaimAsync(voter, ClaimsStore.VoterClaims[i]);
-                        }
+                        await roleManager.AddClaimAsync(voter, ClaimsStore.VoterClaims[i]);
                     }
-                   
                 }
             }
 
