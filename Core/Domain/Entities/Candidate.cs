@@ -12,7 +12,7 @@ namespace Domain.Entities
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
-        public Guid? CategoryId { get; set; }
+        public string CategoryId { get; set; }
 
 
         [ForeignKey("CategoryId")]

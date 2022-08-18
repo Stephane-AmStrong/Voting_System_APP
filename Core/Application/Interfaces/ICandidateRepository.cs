@@ -11,7 +11,7 @@ namespace Application.Interfaces
     {
         Task<PagedList<Candidate>> GetPagedListAsync(GetCandidatesQuery getCandidatesQuery);
 
-        Task<Candidate> GetByIdAsync(Guid id);
+        Task<Candidate> GetByIdAsync(string id);
         Task<bool> ExistAsync(Candidate candidate);
 
         Task CreateAsync(Candidate candidate);

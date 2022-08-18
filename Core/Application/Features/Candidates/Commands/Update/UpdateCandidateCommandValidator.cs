@@ -30,8 +30,7 @@ namespace Application.Features.Candidates.Commands.Update
 
             RuleFor(p => p.CategoryId)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
-                .Must(BeAValidGuid).WithMessage("{PropertyName} is required.");
+                .NotNull();
 
             RuleFor(p => p)
                 .MustAsync(IsUnique).WithMessage("Candidate already exists.");
@@ -40,11 +39,6 @@ namespace Application.Features.Candidates.Commands.Update
         private bool BeAValidDate(DateTime date)
         {
             return !date.Equals(default(DateTime)) && date < DateTime.Now;
-        }
-
-        private bool BeAValidGuid(Guid id)
-        {
-            return !id.Equals(new Guid());
         }
 
         private async Task<bool> IsUnique(UpdateCandidateCommand candidateCommand, CancellationToken cancellationToken)

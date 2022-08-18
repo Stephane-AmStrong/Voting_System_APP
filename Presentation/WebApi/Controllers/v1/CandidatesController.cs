@@ -46,7 +46,7 @@ namespace WebApi.Controllers.v1
         /// <returns></returns>
         [HttpGet("{id}")]
         [Authorize(Policy = "candidate.read.policy")]
-        public async Task<IActionResult> Get(Guid id)
+        public async Task<IActionResult> Get(string id)
         {
             return Ok(await Mediator.Send(new GetCandidateByIdQuery { Id = id }));
         }
@@ -94,7 +94,7 @@ namespace WebApi.Controllers.v1
         /// <returns></returns>
         [HttpPut("{id}")]
         [Authorize(Policy = "candidate.write.policy")]
-        public async Task<IActionResult> Put(Guid id, UpdateCandidateCommand command)
+        public async Task<IActionResult> Put(string id, UpdateCandidateCommand command)
         {
             command.Id = id;
             return Ok(await Mediator.Send(command));
@@ -108,7 +108,7 @@ namespace WebApi.Controllers.v1
         /// <returns></returns>
         [HttpDelete("{id}")]
         [Authorize(Policy = "candidate.manage.policy")]
-        public async Task<IActionResult> Delete(Guid id)
+        public async Task<IActionResult> Delete(string id)
         {
             await Mediator.Send(new DeleteCandidateCommand { Id = id });
             return NoContent();

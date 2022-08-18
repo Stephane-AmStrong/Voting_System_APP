@@ -1,4 +1,5 @@
-﻿using Application.Features.Categories.Queries.GetById;
+﻿using Application.Enums;
+using Application.Features.Categories.Queries.GetById;
 using Application.Interfaces;
 using Application.Wrappers;
 using AutoMapper;
@@ -20,12 +21,14 @@ namespace Application.Features.Categories.Commands.Create
     {
         private readonly ILogger<CreateCategoryCommandHandler> _logger;
         private readonly IRepositoryWrapper _repository;
+        private readonly Nest.ElasticClient _nestClient;
         private readonly IMapper _mapper;
 
 
-        public CreateCategoryCommandHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<CreateCategoryCommandHandler> logger)
+        public CreateCategoryCommandHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<CreateCategoryCommandHandler> logger, Nest.ElasticClient nestClient)
         {
             _repository = repository;
+            _nestClient = nestClient;
             _mapper = mapper;
             _logger = logger;
         }
@@ -34,6 +37,11 @@ namespace Application.Features.Categories.Commands.Create
         public async Task<CategoryViewModel> Handle(CreateCategoryCommand command, CancellationToken cancellationToken)
         {
             var category = _mapper.Map<Category>(command);
+
+            var response = await _nestClient.IndexAsync(category,
+                x => x.Index(EnumElasticIndexes.Categories.ToString())
+            );
+            category.Id = response.Id;
 
             await _repository.Category.CreateAsync(category);
             await _repository.SaveAsync();

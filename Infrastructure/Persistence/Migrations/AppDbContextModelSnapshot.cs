@@ -30,8 +30,8 @@ namespace Persistence.Migrations
                     b.Property<DateTime>("ExpiryDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -43,12 +43,11 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.Candidate", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<Guid?>("CategoryId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("CategoryId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -79,9 +78,8 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.Category", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -109,15 +107,16 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.Vote", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<Guid>("CandidateId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("CandidateId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("CategoryId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("CategoryId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -217,7 +216,7 @@ namespace Persistence.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("Voter", (string)null);
+                    b.ToTable("Voters", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -244,7 +243,7 @@ namespace Persistence.Migrations
                         .HasDatabaseName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
-                    b.ToTable("Role", (string)null);
+                    b.ToTable("Roles", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

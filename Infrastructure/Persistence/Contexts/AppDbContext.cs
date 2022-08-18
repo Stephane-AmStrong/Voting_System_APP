@@ -74,12 +74,12 @@ namespace Persistence.Contexts
 
             builder.Entity<Voter>(entity =>
             {
-                entity.ToTable(name: "Voter");
+                entity.ToTable(name: "Voters");
             });
 
             builder.Entity<IdentityRole>(entity =>
             {
-                entity.ToTable(name: "Role");
+                entity.ToTable(name: "Roles");
             });
 
             builder.Entity<IdentityUserRole<string>>(entity =>

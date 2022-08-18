@@ -18,11 +18,13 @@ namespace Application.Features.Voters.Queries.GetById
     {
         private readonly ILogger<GetVoterByIdQueryHandler> _logger;
         private readonly IRepositoryWrapper _repository;
+        private readonly Nest.ElasticClient _nestClient;
         private readonly IMapper _mapper;
 
-        public GetVoterByIdQueryHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<GetVoterByIdQueryHandler> logger)
+        public GetVoterByIdQueryHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<GetVoterByIdQueryHandler> logger, Nest.ElasticClient nestClient)
         {
             _repository = repository;
+            _nestClient = nestClient;
             _mapper = mapper;
             _logger = logger;
         }

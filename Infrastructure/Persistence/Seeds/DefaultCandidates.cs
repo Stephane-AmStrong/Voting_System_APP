@@ -19,6 +19,7 @@ namespace Persistence.Seeds
             using (var scope = webApp.Services.CreateScope())
             {
                 var repository = scope.ServiceProvider.GetRequiredService<IRepositoryWrapper>();
+                var nestClient = scope.ServiceProvider.GetRequiredService<Nest.ElasticClient>();
 
 
                 var presidentsCandidatesToSeed = new string[,]
@@ -47,7 +48,7 @@ namespace Persistence.Seeds
                     {
                         var candidate = new Candidate
                         {
-                            Id = Guid.NewGuid(),
+                            Id = Guid.NewGuid().ToString(),
                             CreatedBy = null,
                             CreatedAt = DateTime.Now,
                             UpdatedAt = null,
@@ -57,7 +58,15 @@ namespace Persistence.Seeds
                             CategoryId = category.Id,
                         };
 
-                        if (! await repository.Candidate.ExistAsync(candidate)) await repository.Candidate.CreateAsync(candidate);
+                        if (! await repository.Candidate.ExistAsync(candidate))
+                        {
+                            var response = await nestClient.IndexAsync(candidate,
+                                x => x.Index(EnumElasticIndexes.Candidates.ToString())
+                            );
+
+                            candidate.Id = response.Id;
+                            await repository.Candidate.CreateAsync(candidate);
+                        }
                     }
                 }
 
@@ -68,7 +77,7 @@ namespace Persistence.Seeds
                     {
                         var candidate = new Candidate
                         {
-                            Id = Guid.NewGuid(),
+                            Id = Guid.NewGuid().ToString(),
                             CreatedBy = null,
                             CreatedAt = DateTime.Now,
                             UpdatedAt = null,
@@ -79,7 +88,15 @@ namespace Persistence.Seeds
                         };
 
 
-                        if (!await repository.Candidate.ExistAsync(candidate)) await repository.Candidate.CreateAsync(candidate);
+                        if (!await repository.Candidate.ExistAsync(candidate))
+                        {
+                            var response = await nestClient.IndexAsync(candidate,
+                                x => x.Index(EnumElasticIndexes.Candidates.ToString())
+                            );
+
+                            candidate.Id = response.Id;
+                            await repository.Candidate.CreateAsync(candidate);
+                        }
                     }
                 }
 
@@ -90,7 +107,7 @@ namespace Persistence.Seeds
                     {
                         var candidate = new Candidate
                         {
-                            Id = Guid.NewGuid(),
+                            Id = Guid.NewGuid().ToString(),
                             CreatedBy = null,
                             CreatedAt = DateTime.Now,
                             UpdatedAt = null,
@@ -101,7 +118,15 @@ namespace Persistence.Seeds
                         };
 
 
-                        if (!await repository.Candidate.ExistAsync(candidate)) await repository.Candidate.CreateAsync(candidate);
+                        if (!await repository.Candidate.ExistAsync(candidate))
+                        {
+                            var response = await nestClient.IndexAsync(candidate,
+                                x => x.Index(EnumElasticIndexes.Candidates.ToString())
+                            );
+
+                            candidate.Id = response.Id;
+                            await repository.Candidate.CreateAsync(candidate);
+                        }
                     }
                 }
 

@@ -23,13 +23,11 @@ namespace Application.Features.Votes.Commands.Create
             RuleFor(p => p.CandidateId)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
-                .Must(BeAValidGuid).WithMessage("{PropertyName} is required.")
                 .MustAsync(CandidateMustExist).WithMessage("Candidate with id: {PropertyName}, hasn't been found.");
             
             RuleFor(p => p.CategoryId)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
-                .Must(BeAValidGuid).WithMessage("{PropertyName} is required.")
                 .MustAsync(CategoryMustExist).WithMessage("Category with id: {PropertyName}, hasn't been found.");
 
             RuleFor(p => p)
@@ -38,24 +36,19 @@ namespace Application.Features.Votes.Commands.Create
 
         }
 
-        private bool BeAValidGuid(Guid id)
-        {
-            return !id.Equals(new Guid());
-        }
-
         private async Task<bool> IsUnique(CreateVoteCommand voteCommand, CancellationToken cancellationToken)
         {
             var vote = _mapper.Map<Vote>(voteCommand);
             return !await _repository.Vote.ExistAsync(vote);
         }
 
-        private async Task<bool> CandidateMustExist(Guid id, CancellationToken cancellationToken)
+        private async Task<bool> CandidateMustExist(string id, CancellationToken cancellationToken)
         {
             var candidate = await _repository.Candidate.GetByIdAsync(id);
             return candidate != null;
         }
 
-        private async Task<bool> CategoryMustExist(Guid id, CancellationToken cancellationToken)
+        private async Task<bool> CategoryMustExist(string id, CancellationToken cancellationToken)
         {
             var category = await _repository.Category.GetByIdAsync(id);
             return category != null;

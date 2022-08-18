@@ -11,8 +11,8 @@ namespace Application.Interfaces
     {
         Task<PagedList<Vote>> GetPagedListAsync(GetVotesQuery getVotesQuery);
 
-        Task<Vote> GetByIdAsync(Guid id);
-        Task<int> GetNumberOfVoteOfCandidateByIdAsync(Guid candidateId);
+        Task<Vote> GetByIdAsync(string id);
+        Task<int> GetNumberOfVoteOfCandidateByIdAsync(string candidateId);
         Task<bool> ExistAsync(Vote vote);
 
         Task CreateAsync(Vote vote);

@@ -44,7 +44,7 @@ namespace Persistence.Repository
         }
 
 
-        public async Task<Category> GetByIdAsync(Guid id)
+        public async Task<Category> GetByIdAsync(string id)
         {
             return await BaseFindByCondition(category => category.Id.Equals(id))
                 .Include(x=>x.Candidates)

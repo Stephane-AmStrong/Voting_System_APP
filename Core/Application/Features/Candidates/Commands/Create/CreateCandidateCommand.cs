@@ -1,4 +1,5 @@
-﻿using Application.Features.Candidates.Queries.GetById;
+﻿using Application.Enums;
+using Application.Features.Candidates.Queries.GetById;
 using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
@@ -14,7 +15,7 @@ namespace Application.Features.Candidates.Commands.Create
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        //public Guid CategoryId { get; set; }
+        //public string CategoryId { get; set; }
     }
 
     internal class CreateCandidateCommandHandler : IRequestHandler<CreateCandidateCommand, CandidateViewModel>
@@ -22,11 +23,13 @@ namespace Application.Features.Candidates.Commands.Create
         private readonly ILogger<CreateCandidateCommandHandler> _logger;
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
+        private readonly Nest.ElasticClient _nestClient;
 
 
-        public CreateCandidateCommandHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<CreateCandidateCommandHandler> logger)
+        public CreateCandidateCommandHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<CreateCandidateCommandHandler> logger, Nest.ElasticClient nestClient)
         {
             _repository = repository;
+            _nestClient = nestClient;
             _mapper = mapper;
             _logger = logger;
         }
@@ -35,6 +38,11 @@ namespace Application.Features.Candidates.Commands.Create
         public async Task<CandidateViewModel> Handle(CreateCandidateCommand command, CancellationToken cancellationToken)
         {
             var candidateEntity = _mapper.Map<Candidate>(command);
+
+            var response = await _nestClient.IndexAsync(candidateEntity,
+                x => x.Index(EnumElasticIndexes.Candidates.ToString())
+            );
+            candidateEntity.Id = response.Id;
 
             await _repository.Candidate.CreateAsync(candidateEntity);
             await _repository.SaveAsync();

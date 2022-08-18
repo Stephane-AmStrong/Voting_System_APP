@@ -11,18 +11,20 @@ namespace Application.Features.Votes.Queries.GetById
 {
     public class GetVoteByIdQuery : IRequest<VoteViewModel>
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
     }
 
     internal class GetVoteByIdQueryHandler : IRequestHandler<GetVoteByIdQuery, VoteViewModel>
     {
         private readonly ILogger<GetVoteByIdQueryHandler> _logger;
         private readonly IRepositoryWrapper _repository;
+        private readonly Nest.ElasticClient _nestClient;
         private readonly IMapper _mapper;
 
-        public GetVoteByIdQueryHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<GetVoteByIdQueryHandler> logger)
+        public GetVoteByIdQueryHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<GetVoteByIdQueryHandler> logger, Nest.ElasticClient nestClient)
         {
             _repository = repository;
+            _nestClient = nestClient;
             _mapper = mapper;
             _logger = logger;
         }

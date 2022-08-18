@@ -12,7 +12,7 @@ namespace Application.Features.Categories.Queries.GetById
 {
     public class GetCategoryByIdQuery : IRequest<CategoryViewModel>
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
     }
 
     internal class GetCategoryByIdQueryHandler : IRequestHandler<GetCategoryByIdQuery, CategoryViewModel>
@@ -25,9 +25,9 @@ namespace Application.Features.Categories.Queries.GetById
         public GetCategoryByIdQueryHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<GetCategoryByIdQueryHandler> logger, Nest.ElasticClient nestClient)
         {
             _repository = repository;
+            _nestClient = nestClient;
             _mapper = mapper;
             _logger = logger;
-            _nestClient = nestClient;
         }
 
         public async Task<CategoryViewModel> Handle(GetCategoryByIdQuery query, CancellationToken cancellationToken)

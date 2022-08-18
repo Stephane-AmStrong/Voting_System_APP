@@ -33,11 +33,6 @@ namespace Application.Features.Candidates.Commands.Create
                 .MustAsync(IsUnique).WithMessage("Candidate already exists.");
         }
 
-        private bool BeAValidGuid(Guid id)
-        {
-            return !id.Equals(new Guid());
-        }
-
         private async Task<bool> IsUnique(CreateCandidateCommand candidateCommand, CancellationToken cancellationToken)
         {
             var candidate = _mapper.Map<Candidate>(candidateCommand);

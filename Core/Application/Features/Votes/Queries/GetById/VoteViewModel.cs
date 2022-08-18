@@ -8,8 +8,8 @@ namespace Application.Features.Votes.Queries.GetById
     public record VoteViewModel:AuditableBaseEntity
     {
         public string VoterId { get; set; }
-        public Guid CategoryId { get; set; }
-        public Guid CandidateId { get; set; }
+        public string CategoryId { get; set; }
+        public string CandidateId { get; set; }
 
         public virtual VoterViewModel Voter { get; set; }
 

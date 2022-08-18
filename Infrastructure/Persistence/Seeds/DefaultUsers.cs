@@ -18,6 +18,9 @@ namespace Persistence.Seeds
             using (var scope = webApp.Services.CreateScope())
             {
                 using var userManager = scope.ServiceProvider.GetRequiredService<UserManager<Voter>>();
+                var nestClient = scope.ServiceProvider.GetRequiredService<Nest.ElasticClient>();
+
+
                 var administrator = new Voter
                 {
                     UserName = "superadmin@mail.com",
@@ -31,6 +34,12 @@ namespace Persistence.Seeds
                 var user = await userManager.FindByEmailAsync(administrator.Email);
                 if (user == null)
                 {
+                    var response = await nestClient.IndexAsync(administrator,
+                        x => x.Index(EnumElasticIndexes.Voters.ToString())
+                    );
+
+                    administrator.Id = response.Id;
+
                     await userManager.CreateAsync(administrator, "123Pa$$word!");
                     await userManager.AddToRoleAsync(administrator, EnumRole.SuperAdmin.ToString());
                 }

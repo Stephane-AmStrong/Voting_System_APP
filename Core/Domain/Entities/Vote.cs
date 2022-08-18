@@ -14,9 +14,9 @@ namespace Domain.Entities
         [Required]
         public string VoterId { get; set; }
         [Required]
-        public Guid CategoryId { get; set; }
+        public string CategoryId { get; set; }
         [Required]
-        public Guid CandidateId { get; set; }
+        public string CandidateId { get; set; }
 
 
 

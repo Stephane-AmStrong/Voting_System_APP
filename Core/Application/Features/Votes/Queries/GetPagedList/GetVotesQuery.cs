@@ -17,19 +17,21 @@ namespace Application.Features.Votes.Queries.GetPagedList
             OrderBy = "categoryid";
         }
 
-        public Guid? WithCategoryId { get; set; }
-        public Guid? WithCandidateId { get; set; }
+        public string WithCategoryId { get; set; }
+        public string WithCandidateId { get; set; }
     }
 
     internal class GetVotesQueryHandler : IRequestHandler<GetVotesQuery, PagedListResponse<VotesViewModel>>
     {
         private readonly ILogger<GetVotesQueryHandler> _logger;
         private readonly IRepositoryWrapper _repository;
+        private readonly Nest.ElasticClient _nestClient;
         private readonly IMapper _mapper;
 
-        public GetVotesQueryHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<GetVotesQueryHandler> logger)
+        public GetVotesQueryHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<GetVotesQueryHandler> logger, Nest.ElasticClient nestClient)
         {
             _repository = repository;
+            _nestClient = nestClient;
             _mapper = mapper;
             _logger = logger;
         }

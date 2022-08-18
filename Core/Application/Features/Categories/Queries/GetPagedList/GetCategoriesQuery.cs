@@ -25,11 +25,13 @@ namespace Application.Features.Categories.Queries.GetPagedList
     {
         private readonly ILogger<GetCategoriesQueryHandler> _logger;
         private readonly IRepositoryWrapper _repository;
+        private readonly Nest.ElasticClient _nestClient;
         private readonly IMapper _mapper;
 
-        public GetCategoriesQueryHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<GetCategoriesQueryHandler> logger)
+        public GetCategoriesQueryHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<GetCategoriesQueryHandler> logger, Nest.ElasticClient nestClient)
         {
             _repository = repository;
+            _nestClient = nestClient;
             _mapper = mapper;
             _logger = logger;
         }

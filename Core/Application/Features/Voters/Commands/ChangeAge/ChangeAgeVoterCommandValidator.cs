@@ -20,10 +20,9 @@ namespace Application.Features.Voters.Commands.ChangeAge
             _mapper = mapper;
 
 
-            RuleFor(p => Guid.Parse(p.Id))
+            RuleFor(p => p.Id)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
-                .Must(BeAValidGuid).WithMessage("{PropertyName} is not valid.");
+                .NotNull();
 
             RuleFor(p => p.Birthday)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
@@ -44,11 +43,6 @@ namespace Application.Features.Voters.Commands.ChangeAge
         {
             var age = DateTime.Today.Year - givenDate.Year;
             return age > 18;
-        }
-
-        private bool BeAValidGuid(Guid id)
-        {
-            return !id.Equals(new Guid());
         }
 
         private async Task<bool> IsUnique(ChangeAgeVoterCommand voterCommand, CancellationToken cancellationToken)

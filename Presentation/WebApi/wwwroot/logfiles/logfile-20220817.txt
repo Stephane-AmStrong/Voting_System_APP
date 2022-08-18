@@ -2193,3 +2193,7 @@ System.InvalidOperationException: The LINQ expression 'DbSet<Category>()
 2022-08-17 21:04:27.568 +01:00 [INF] Categories Seeding Complete
 2022-08-17 21:04:27.568 +01:00 [INF] Starting Seeding Default Candidates
 2022-08-17 21:04:29.133 +01:00 [INF] Candidates Seeding Complete
+2022-08-17 22:57:46.360 +01:00 [INF] Starting Seeding Default Roles
+2022-08-17 22:57:51.953 +01:00 [INF] Roles Seeding Complete
+2022-08-17 23:06:18.504 +01:00 [INF] Starting Seeding Default Roles
+2022-08-17 23:06:24.003 +01:00 [INF] Roles Seeding Complete

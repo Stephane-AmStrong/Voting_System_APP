@@ -18,6 +18,7 @@ namespace Persistence.Seeds
             using (var scope = webApp.Services.CreateScope())
             {
                 var repository = scope.ServiceProvider.GetRequiredService<IRepositoryWrapper>();
+                var nestClient = scope.ServiceProvider.GetRequiredService<Nest.ElasticClient>();
 
                 string[] categoriesToSeed =
                 {
@@ -31,7 +32,7 @@ namespace Persistence.Seeds
                 {
                     var category = new Category
                     {
-                        Id = Guid.NewGuid(),
+                        Id = Guid.NewGuid().ToString(),
                         CreatedBy = null,
                         CreatedAt = DateTime.Now,
                         UpdatedAt = null,
@@ -39,7 +40,14 @@ namespace Persistence.Seeds
                         Name = categoriesToSeed[i],
                     };
 
-                    if (!await repository.Category.ExistAsync(category)) await repository.Category.CreateAsync(category);
+                    if (!await repository.Category.ExistAsync(category))
+                    {
+                        var response = await nestClient.IndexAsync(category,
+                            x => x.Index(EnumElasticIndexes.Categories.ToString())
+                        );
+                        category.Id = response.Id;
+                        await repository.Category.CreateAsync(category);
+                    }
                 }
 
                 await repository.SaveAsync();

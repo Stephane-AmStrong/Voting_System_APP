@@ -44,7 +44,7 @@ namespace Persistence.Repository
         }
 
 
-        public async Task<Vote> GetByIdAsync(Guid id)
+        public async Task<Vote> GetByIdAsync(string id)
         {
             return await BaseFindByCondition(vote => vote.Id.Equals(id))
                 .Include(x => x.Category)
@@ -53,7 +53,7 @@ namespace Persistence.Repository
         }
 
 
-        public async Task<int> GetNumberOfVoteOfCandidateByIdAsync(Guid candidateId)
+        public async Task<int> GetNumberOfVoteOfCandidateByIdAsync(string candidateId)
         {
             return await BaseFindByCondition(vote => vote.CandidateId == candidateId).CountAsync();
         }
@@ -92,13 +92,13 @@ namespace Persistence.Repository
                 .Include(x => x.Voter);
 
            
-            if (votesQuery.WithCandidateId!=null && votesQuery.WithCandidateId != new Guid())
+            if (!string.IsNullOrEmpty(votesQuery.WithCandidateId))
             {
                 votes = votes.Where(x => x.CandidateId == votesQuery.WithCandidateId);
             }
 
            
-            if (votesQuery.WithCategoryId!=null && votesQuery.WithCategoryId != new Guid())
+            if (!string.IsNullOrEmpty(votesQuery.WithCategoryId))
             {
                 votes = votes.Where(x => x.CategoryId == votesQuery.WithCategoryId);
             }

@@ -10,7 +10,7 @@ namespace Application.Models
 {
     public record UserToken
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
         public string UserId { get; set; }
         public DateTime ExpiryDate { get; set; }
         public string Value { get; set; }

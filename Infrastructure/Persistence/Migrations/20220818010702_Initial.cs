@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Persistence.Migrations
 {
-    public partial class ApplicationDbContext : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,7 @@ namespace Persistence.Migrations
                 name: "Categories",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -31,7 +31,7 @@ namespace Persistence.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ExpiryDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -41,7 +41,7 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Role",
+                name: "Roles",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -51,11 +51,11 @@ namespace Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Role", x => x.Id);
+                    table.PrimaryKey("PK_Roles", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Voter",
+                name: "Voters",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -79,17 +79,17 @@ namespace Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Voter", x => x.Id);
+                    table.PrimaryKey("PK_Voters", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Candidates",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CategoryId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -102,8 +102,7 @@ namespace Persistence.Migrations
                         name: "FK_Candidates_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -120,9 +119,9 @@ namespace Persistence.Migrations
                 {
                     table.PrimaryKey("PK_RoleClaims", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_RoleClaims_Role_RoleId",
+                        name: "FK_RoleClaims_Roles_RoleId",
                         column: x => x.RoleId,
-                        principalTable: "Role",
+                        principalTable: "Roles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -141,9 +140,9 @@ namespace Persistence.Migrations
                 {
                     table.PrimaryKey("PK_UserClaims", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserClaims_Voter_UserId",
+                        name: "FK_UserClaims_Voters_UserId",
                         column: x => x.UserId,
-                        principalTable: "Voter",
+                        principalTable: "Voters",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -161,9 +160,9 @@ namespace Persistence.Migrations
                 {
                     table.PrimaryKey("PK_UserLogins", x => new { x.LoginProvider, x.ProviderKey });
                     table.ForeignKey(
-                        name: "FK_UserLogins_Voter_UserId",
+                        name: "FK_UserLogins_Voters_UserId",
                         column: x => x.UserId,
-                        principalTable: "Voter",
+                        principalTable: "Voters",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -179,15 +178,15 @@ namespace Persistence.Migrations
                 {
                     table.PrimaryKey("PK_UserRoles", x => new { x.UserId, x.RoleId });
                     table.ForeignKey(
-                        name: "FK_UserRoles_Role_RoleId",
+                        name: "FK_UserRoles_Roles_RoleId",
                         column: x => x.RoleId,
-                        principalTable: "Role",
+                        principalTable: "Roles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserRoles_Voter_UserId",
+                        name: "FK_UserRoles_Voters_UserId",
                         column: x => x.UserId,
-                        principalTable: "Voter",
+                        principalTable: "Voters",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -205,9 +204,9 @@ namespace Persistence.Migrations
                 {
                     table.PrimaryKey("PK_UserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
                     table.ForeignKey(
-                        name: "FK_UserTokens_Voter_UserId",
+                        name: "FK_UserTokens_Voters_UserId",
                         column: x => x.UserId,
-                        principalTable: "Voter",
+                        principalTable: "Voters",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -216,9 +215,10 @@ namespace Persistence.Migrations
                 name: "Votes",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     VoterId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    CategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CategoryId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CandidateId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -234,9 +234,9 @@ namespace Persistence.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Votes_Voter_VoterId",
+                        name: "FK_Votes_Voters_VoterId",
                         column: x => x.VoterId,
-                        principalTable: "Voter",
+                        principalTable: "Voters",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -247,16 +247,16 @@ namespace Persistence.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "RoleNameIndex",
-                table: "Role",
-                column: "NormalizedName",
-                unique: true,
-                filter: "[NormalizedName] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_RoleClaims_RoleId",
                 table: "RoleClaims",
                 column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "RoleNameIndex",
+                table: "Roles",
+                column: "NormalizedName",
+                unique: true,
+                filter: "[NormalizedName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserClaims_UserId",
@@ -275,12 +275,12 @@ namespace Persistence.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "EmailIndex",
-                table: "Voter",
+                table: "Voters",
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
-                table: "Voter",
+                table: "Voters",
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
@@ -323,13 +323,13 @@ namespace Persistence.Migrations
                 name: "Votes");
 
             migrationBuilder.DropTable(
-                name: "Role");
+                name: "Roles");
 
             migrationBuilder.DropTable(
                 name: "Categories");
 
             migrationBuilder.DropTable(
-                name: "Voter");
+                name: "Voters");
         }
     }
 }

@@ -25,11 +25,13 @@ namespace Application.Features.Voters.Queries.GetPagedList
     {
         private readonly ILogger<GetVotersQueryHandler> _logger;
         private readonly IRepositoryWrapper _repository;
+        private readonly Nest.ElasticClient _nestClient;
         private readonly IMapper _mapper;
 
-        public GetVotersQueryHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<GetVotersQueryHandler> logger)
+        public GetVotersQueryHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<GetVotersQueryHandler> logger, Nest.ElasticClient nestClient)
         {
             _repository = repository;
+            _nestClient = nestClient;
             _mapper = mapper;
             _logger = logger;
         }

@@ -18,11 +18,23 @@ namespace Persistence.Seeds
             using (var scope = webApp.Services.CreateScope())
             {
                 using var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+                var nestClient = scope.ServiceProvider.GetRequiredService<Nest.ElasticClient>();
+                
+
                 var superAdmin = await roleManager.FindByNameAsync(EnumRole.SuperAdmin.ToString());
 
                 if (superAdmin == null)
                 {
                     superAdmin = new IdentityRole(EnumRole.SuperAdmin.ToString());
+
+                    var response = await nestClient.IndexAsync<IdentityRole>(superAdmin,
+                        x => x.Index(EnumElasticIndexes.Roles.ToString())
+                    );
+
+                    superAdmin.Id = response.Id;
+
+
+
                     await roleManager.CreateAsync(superAdmin);
 
                     for (int i = 0; i < ClaimsStore.AllClaims.Count; i++)
@@ -36,6 +48,13 @@ namespace Persistence.Seeds
                 if (voter == null)
                 {
                     voter = new IdentityRole(EnumRole.Voter.ToString());
+
+                    var response = await nestClient.IndexAsync<IdentityRole>(voter,
+                        x => x.Index(EnumElasticIndexes.Roles.ToString())
+                    );
+
+                    voter.Id = response.Id;
+
                     await roleManager.CreateAsync(voter);
 
                     for (int i = 0; i < ClaimsStore.VoterClaims.Count; i++)

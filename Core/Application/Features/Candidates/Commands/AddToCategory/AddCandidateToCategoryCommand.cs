@@ -14,8 +14,8 @@ namespace Application.Features.Candidates.Commands.AddToCategory
 {
     public class AddCandidateToCategoryCommand : IRequest<CandidateViewModel>
     {
-        public Guid CandidateId { get; set; }
-        public Guid CategoryId { get; set; }
+        public string CandidateId { get; set; }
+        public string CategoryId { get; set; }
     }
 
     internal class CreateCategoryCommandHandler : IRequestHandler<AddCandidateToCategoryCommand, CandidateViewModel>

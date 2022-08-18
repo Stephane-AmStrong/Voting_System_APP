@@ -40,7 +40,7 @@ namespace WebApi.Controllers.v1
         /// <returns></returns>
         [HttpGet("{id}")]
         [Authorize(Policy = "category.read.policy")]
-        public async Task<IActionResult> Get(Guid id)
+        public async Task<IActionResult> Get(string id)
         {
             return Ok(await Mediator.Send(new GetCategoryByIdQuery { Id = id }));
         }

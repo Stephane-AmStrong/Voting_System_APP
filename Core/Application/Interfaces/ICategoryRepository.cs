@@ -11,7 +11,7 @@ namespace Application.Interfaces
     {
         Task<PagedList<Category>> GetPagedListAsync(GetCategoriesQuery getCategoriesQuery);
 
-        Task<Category> GetByIdAsync(Guid id);
+        Task<Category> GetByIdAsync(string id);
         Task<bool> ExistAsync(Category category);
 
         Task CreateAsync(Category category);

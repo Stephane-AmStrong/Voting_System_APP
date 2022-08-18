@@ -24,7 +24,7 @@ namespace Application.Interfaces
 
 
         Task<UserToken> CommitAsync(UserToken refreshToken);
-        Task<UserToken> GetByIdAsync(Guid Id);
+        Task<UserToken> GetByIdAsync(string Id);
         Task<UserToken> GetByUserIdAsync(string userId);
 
         Task CreateAsync(UserToken refreshToken);

@@ -14,18 +14,20 @@ namespace Application.Features.Votes.Queries.GetNumberOfVotesForACandidate
     public class GetNumberOfVotesForACandidateQuery : IRequest<int>
     {
         [System.Text.Json.Serialization.JsonIgnore]
-        public Guid CandidateId { get; set; }
+        public string CandidateId { get; set; }
     }
 
     internal class GetVotesQueryHandler : IRequestHandler<GetNumberOfVotesForACandidateQuery, int>
     {
         private readonly ILogger<GetVotesQueryHandler> _logger;
         private readonly IRepositoryWrapper _repository;
+        private readonly Nest.ElasticClient _nestClient;
         private readonly IMapper _mapper;
 
-        public GetVotesQueryHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<GetVotesQueryHandler> logger)
+        public GetVotesQueryHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<GetVotesQueryHandler> logger, Nest.ElasticClient nestClient)
         {
             _repository = repository;
+            _nestClient = nestClient;
             _mapper = mapper;
             _logger = logger;
         }

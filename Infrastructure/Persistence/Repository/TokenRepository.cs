@@ -91,7 +91,7 @@ namespace Persistence.Repository
             }
             else
             {
-                newestTokenId = Guid.NewGuid();
+                newestTokenId = Guid.NewGuid().ToString();
                 lastRefreshToken.Id = newestTokenId;
 
                 lastRefreshToken.UserId = refreshToken.UserId;
@@ -161,7 +161,7 @@ namespace Persistence.Repository
 
             return new UserToken
             {
-                Id = userRefreshToken != null ? userRefreshToken.Id : Guid.NewGuid(),
+                Id = userRefreshToken != null ? userRefreshToken.Id : Guid.NewGuid().ToString(),
                 UserId = userId,
                 //LoginProvider = randomTokenString,
                 Value = randomTokenString,
@@ -248,7 +248,7 @@ namespace Persistence.Repository
             return principal;
         }
 
-        public async Task<UserToken> GetByIdAsync(Guid id)
+        public async Task<UserToken> GetByIdAsync(string id)
         {
             return await BaseFindByCondition(userToken => userToken.Id == id)
                 .FirstOrDefaultAsync();

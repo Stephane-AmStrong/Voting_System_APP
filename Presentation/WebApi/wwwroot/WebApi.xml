@@ -73,7 +73,7 @@
             <param name="candidatesQuery"></param>
             <returns></returns>
         </member>
-        <member name="M:WebApi.Controllers.v1.CandidatesController.Get(System.Guid)">
+        <member name="M:WebApi.Controllers.v1.CandidatesController.Get(System.String)">
             <summary>
             Retreives a specific Candidate.
             </summary>
@@ -98,7 +98,7 @@
             <response code="201">Returns the newly created command</response>
             <response code="400">If the command is null</response>            
         </member>
-        <member name="M:WebApi.Controllers.v1.CandidatesController.Put(System.Guid,Application.Features.Candidates.Commands.Update.UpdateCandidateCommand)">
+        <member name="M:WebApi.Controllers.v1.CandidatesController.Put(System.String,Application.Features.Candidates.Commands.Update.UpdateCandidateCommand)">
             <summary>
             Update a specific Candidate.
             </summary>
@@ -106,7 +106,7 @@
             <param name="command"></param>
             <returns></returns>
         </member>
-        <member name="M:WebApi.Controllers.v1.CandidatesController.Delete(System.Guid)">
+        <member name="M:WebApi.Controllers.v1.CandidatesController.Delete(System.String)">
             <summary>
             Deletes a specific Candidate.
             </summary>
@@ -120,7 +120,7 @@
             <param name="categoriesQuery"></param>
             <returns></returns>
         </member>
-        <member name="M:WebApi.Controllers.v1.CategoriesController.Get(System.Guid)">
+        <member name="M:WebApi.Controllers.v1.CategoriesController.Get(System.String)">
             <summary>
             Retreives a specific Category.
             </summary>
@@ -189,14 +189,14 @@
             <param name="votesQuery"></param>
             <returns></returns>
         </member>
-        <member name="M:WebApi.Controllers.v1.VotesController.Get(System.Guid)">
+        <member name="M:WebApi.Controllers.v1.VotesController.Get(System.String)">
             <summary>
             Retreives a specific Vote.
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:WebApi.Controllers.v1.VotesController.GetNumberOfVotesForACandidate(System.Guid)">
+        <member name="M:WebApi.Controllers.v1.VotesController.GetNumberOfVotesForACandidate(System.String)">
             <summary>
             Retreives the Number of votes for candidate with the specified.
             </summary>

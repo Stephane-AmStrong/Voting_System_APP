@@ -13,13 +13,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{6187EA03-66AA-4784-8C7F-402905254F28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Core\Application\Application.csproj", "{072455E2-F5DE-45CF-80CB-FDE131E5F7C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Core\Application\Application.csproj", "{072455E2-F5DE-45CF-80CB-FDE131E5F7C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Core\Domain\Domain.csproj", "{8FC96BB5-EEA1-4083-BC8C-9D359FC12B5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Core\Domain\Domain.csproj", "{8FC96BB5-EEA1-4083-BC8C-9D359FC12B5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Infrastructure\Persistence\Persistence.csproj", "{BD890137-89B7-4A0D-B7E9-0194698ED107}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "Infrastructure\Persistence\Persistence.csproj", "{BD890137-89B7-4A0D-B7E9-0194698ED107}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "Presentation\WebApi\WebApi.csproj", "{523475BB-372C-440A-A5C8-BF17BF5E02AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "Presentation\WebApi\WebApi.csproj", "{523475BB-372C-440A-A5C8-BF17BF5E02AF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{1C93B6C4-CA05-4756-BD79-0F707BDECB1E}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -17,10 +17,12 @@ namespace Application.Features.Voters.Commands.Delete
     {
         private readonly ILogger<DeleteVoterByIdCommandHandler> _logger;
         private readonly IRepositoryWrapper _repository;
+        private readonly Nest.ElasticClient _nestClient;
 
-        public DeleteVoterByIdCommandHandler(IRepositoryWrapper repository, ILogger<DeleteVoterByIdCommandHandler> logger)
+        public DeleteVoterByIdCommandHandler(IRepositoryWrapper repository, ILogger<DeleteVoterByIdCommandHandler> logger, Nest.ElasticClient nestClient)
         {
             _repository = repository;
+            _nestClient = nestClient;
             _logger = logger;
         }
 

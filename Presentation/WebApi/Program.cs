@@ -62,11 +62,11 @@ try
     Log.Information("Starting Seeding Default Roles");
     await app.SeedDefaultRolesAsync();
     Log.Information("Roles Seeding Complete");
-    
+
     Log.Information("Starting Seeding SuperAdmin");
     await app.SeedSuperAdminAsync();
     Log.Information("SuperAdmin Seeding Complete");
-    
+
     Log.Information("Starting Seeding Default Categories");
     await app.SeedDefaultCategoriesAsync();
     Log.Information("Categories Seeding Complete");

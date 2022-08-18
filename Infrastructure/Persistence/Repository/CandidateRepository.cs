@@ -44,7 +44,7 @@ namespace Persistence.Repository
         }
 
 
-        public async Task<Candidate> GetByIdAsync(Guid id)
+        public async Task<Candidate> GetByIdAsync(string id)
         {
             return await BaseFindByCondition(candidate => candidate.Id.Equals(id))
                 .FirstOrDefaultAsync();

@@ -41,7 +41,7 @@ namespace WebApi.Controllers.v1
         /// <returns></returns>
         [HttpGet("{id}")]
         [Authorize(Policy = "vote.read.policy")]
-        public async Task<IActionResult> Get(Guid id)
+        public async Task<IActionResult> Get(string id)
         {
             return Ok(await Mediator.Send(new GetVoteByIdQuery { Id = id }));
         }
@@ -54,7 +54,7 @@ namespace WebApi.Controllers.v1
         /// <returns></returns>
         [HttpGet("number-of-votes-for-candidate/{CandidateId}")]
         [Authorize(Policy = "vote.read.policy")]
-        public async Task<IActionResult> GetNumberOfVotesForACandidate(Guid CandidateId)
+        public async Task<IActionResult> GetNumberOfVotesForACandidate(string CandidateId)
         {
             return Ok(await Mediator.Send(new GetNumberOfVotesForACandidateQuery { CandidateId = CandidateId }));
         }

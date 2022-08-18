@@ -26,10 +26,12 @@ namespace Application.Features.Candidates.Queries.GetPagedList
         private readonly ILogger<GetCandidatesQueryHandler> _logger;
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
+        private readonly Nest.ElasticClient _nestClient;
 
-        public GetCandidatesQueryHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<GetCandidatesQueryHandler> logger)
+        public GetCandidatesQueryHandler(IRepositoryWrapper repository, IMapper mapper, ILogger<GetCandidatesQueryHandler> logger, Nest.ElasticClient nestClient)
         {
             _repository = repository;
+            _nestClient = nestClient;
             _mapper = mapper;
             _logger = logger;
         }
